@@ -1,0 +1,2 @@
+class Guarentor < ApplicationRecord
+end

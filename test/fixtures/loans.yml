@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: MyString
+  no_of_emi: 1
+  pending_emi: 1
+  rate_of_interest: 1.5
+  status: MyString
+  customer: one
+  guarentor: one
+
+two:
+  amount: MyString
+  no_of_emi: 1
+  pending_emi: 1
+  rate_of_interest: 1.5
+  status: MyString
+  customer: two
+  guarentor: two

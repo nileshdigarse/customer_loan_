@@ -1,0 +1,40 @@
+<div class="max-w-lg mx-auto mt-16 text-center max-w-sm rounded overflow-hidden shadow-lg p-10">
+  <h1 class="mb-4 text-3xl font-black">customers index</h1>
+</div>
+  <table class="w-full">
+    <thead class="bg-gray-50 border-b-2 border-gray-200">
+      <tr>
+        <th class="p-3 text-sm font-semibold tracking_wide text-left">S.No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Loan Amount</th>
+        <th>No. of EMI's</th>
+        <th>pending EMI's</th>
+        <th>ROI</th>
+        <th>Status</th>
+        <th>Guarentor Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <%a=1%>
+        <% @customers.each do |customer| %>
+        
+        <td><%= a %></td>
+        <% a=a+1 %>
+        <td><%= customer.name %></td>
+
+        <td><%= customer.email %></td>
+        <% loan = Loan.find_by(customer_id: customer.id) %>
+        <td><%= loan.amount %></td>
+        <td><%= loan.no_of_emi %></td>
+        <td><%= loan.pending_emi %></td>
+        <td><%= loan.rate_of_interest %></td>
+        <td><%= loan.status %></td>
+        <% guarentor = Guarentor.find(loan.guarentor_id)%>
+        <td><%= guarentor.name %></td>
+        
+      </tr>
+    </tbody>
+  <% end %>
+</table>

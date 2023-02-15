@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <center><p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p></center>
     <title>CustomerLoanDatabase</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <%unless current_user == nil%>
+      <%= button_to "logout", destroy_user_session_path, method: :delete %>
+    <%end%>
     <%= yield %>
   </body>
 </html>

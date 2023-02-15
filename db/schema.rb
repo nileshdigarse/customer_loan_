@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_14_104137) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_14_110048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_104137) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "loans", force: :cascade do |t|
+    t.string "amount"
+    t.integer "no_of_emi"
+    t.integer "pending_emi"
+    t.float "rate_of_interest"
+    t.string "status"
+    t.bigint "customer_id", null: false
+    t.bigint "guarentor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_loans_on_customer_id"
+    t.index ["guarentor_id"], name: "index_loans_on_guarentor_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,4 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_104137) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "loans", "customers"
+  add_foreign_key "loans", "guarentors"
 end

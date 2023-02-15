@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <center><p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p></center>
+    <!--<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>-->
     <title>CustomerLoanDatabase</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -31,9 +31,6 @@
   </head>
 
   <body>
-    <%unless current_user == nil%>
-      <%= button_to "logout", destroy_user_session_path, method: :delete %>
-    <%end%>
     <%= yield %>
   </body>
 </html>

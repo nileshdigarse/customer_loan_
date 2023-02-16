@@ -24,6 +24,7 @@
         <% a=a+1 %>
         <td><%= customer.name %></td>
 
+<<<<<<< Updated upstream
         <td><%= customer.email %></td>
         <% loan = Loan.find_by(customer_id: customer.id) %>
         <td><%= loan.amount %></td>
@@ -38,3 +39,7 @@
     </tbody>
   <% end %>
 </table>
+=======
+
+<%= render "devise/shared/footer" %>
+>>>>>>> Stashed changes

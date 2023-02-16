@@ -28,7 +28,7 @@
       <div class="field">
         <%= f.label :password, class: "sr-only"  %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em class="font-medium text-indigo-600 hover:text-indigo-500">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Password" %>
       </div>

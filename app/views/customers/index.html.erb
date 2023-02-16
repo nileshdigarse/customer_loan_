@@ -14,35 +14,35 @@
           <header class="px-5 py-4 border-b border-gray-100">
             <h2 class="font-semibold text-gray-800">Customers</h2>
             
-          </header>
-          <table class="table-auto w-full">
-            <thead class="bg-gray-50 dark:bg-gray-800">
+          </header >
+          <table class="table-auto w-full" style="text-align:center" >
+            <thead class="bg-gray-50 dark:bg-gray-800" >
               <tr>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   S.NO.
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Name
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Email
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Loan Amount
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   No. of EMI's
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Pending EMI's
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   ROI in %
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Status
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Guarentor Name
                 </th>
               </tr>
@@ -51,15 +51,15 @@
               <%a=1%>
               <% @customers.each do |customer| %>
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">  
-                <td style="text-align:center"><%= a %></td>
+                <td><%= a %></td>
                 <% a=a+1 %>
                 <td><%= customer.name %></td>
                 <td><%= customer.email %></td>
                 <% loan = Loan.find_by(customer_id: customer.id) %>
                 <td><%= loan.amount %></td>
-                <td><%= loan.no_of_emi %></td>
+                <td><%= loan.emis %></td>
                 <td><%= loan.pending_emi %></td>
-                <td><%= loan.rate_of_interest %></td>
+                <td><%= loan.roi %></td>
                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                 <%if loan.status == "completed"%>
                   <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
@@ -69,7 +69,7 @@
                     <h2 class="text-sm font-normal"><%= loan.status %></h2>
                   </div>
                 </td>
-                <% guarentor = Guarentor.find(loan&.guarentor_id)%>
+                <% guarentor = Guarentor.find_by(customer_id: customer.id)%>
                 <td><%= guarentor&.name %></td>
               </tr>
               <% end %>

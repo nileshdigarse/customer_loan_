@@ -1,3 +1,3 @@
 class Guarentor < ApplicationRecord
-    has_one :loan
+  belongs_to :customer
 end

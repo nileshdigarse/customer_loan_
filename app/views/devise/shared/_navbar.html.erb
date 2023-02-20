@@ -28,29 +28,7 @@
         <%else%>
           <div class="hidden sm:ml-5 sm:block">
             <div class="flex space-x-4">
-              <div class="relative inline-block">
-                <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page" onmouseover="toggleMenu()" onfocusout="closeMenu()">Customers</a>
-                <div class="origin-top-right absolute right-0 left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="options-menu" id="menu">
-                  <div class="py-1" role="none">
-                    <a href="/customers/new" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Add Customer</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Read</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Update</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Delete</a>
-                  </div>
-                </div>
-              </div>
-
-              <script>
-                function toggleMenu() {
-                  var menu = document.getElementById("menu");
-                  menu.classList.toggle("hidden");
-                }
-
-                function closeMenu() {
-                  var menu = document.getElementById("menu");
-                  menu.classList.add("hidden");
-                }
-              </script>
+              <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Customers</a>
 
               <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Investors</a>
 
@@ -61,24 +39,8 @@
             </div>
           </div>
         <%end%>
-      </div>
-      
-        <!-- Profile dropdown -->
-        <%# <div class="relative ml-3">
-          <div>
-            <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="sr-only">Open user menu</span>class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-            </button>
-          </div>
-        </div> %>
-        <!--<button type="button" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-              <%unless current_user == nil%>
-                <%= link_to "logout", destroy_user_session_path, method: :delete %>
-              <%end%>
-          </button>-->
+        </div>
       </div>
     </div>
   </div>
-
 </nav>

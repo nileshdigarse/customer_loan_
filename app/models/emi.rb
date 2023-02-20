@@ -1,0 +1,2 @@
+class Emi < ApplicationRecord
+end

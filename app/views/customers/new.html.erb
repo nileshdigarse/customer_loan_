@@ -1,26 +1,5 @@
 <%= render "devise/shared/navbar" %>
-
-
-<%= form_with(model: @customer, local: true) do |form| %>
-  <%= form.fields_for :address do |address_form| %>
-    <!-- Customer address fields here -->
-  <% end %>
-  
-  <%= form.fields_for :guarantors do |guarantor_form| %>
-    <!-- Guarantor form fields here -->
-    
-    <%= guarantor_form.fields_for :address do |address_form| %>
-      <!-- Guarantor address fields here -->
-    <% end %>
-  <% end %>
-  
-  <%= form.fields_for :loans do |loan_form| %>
-    <!-- Loan fields here -->
-  <% end %>
-  
-  <%= form.submit %>
-<% end %>
-
+<%= render "devise/shared/notice" %>
 
 <div class="mt-10 sm:mt-0" style="margin-bottom:20%">
   <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -70,7 +49,19 @@
             <%= address_form.label :Customer_zipcode, class: "block text-sm font-medium text-gray-700" %>
             <%= address_form.text_field :zipcode, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
+          <% end %>
 
+          <!--document-->
+          <%= form.fields_for :document do |document_form| %>
+          <div class="col-span-12 sm:col-span-12">
+            <%= document_form.label :Customer_Aadhar_card_number, class: "block text-sm font-medium text-gray-700" %>
+            <%= document_form.text_field :aadhar_card, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
+            </div>
+
+            <div class="col-span-12 sm:col-span-12">
+            <%= document_form.label :Customer_Pan_card_number, class: "block text-sm font-medium text-gray-700" %>
+            <%= document_form.text_field :pancard, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
+            </div>
           <% end %>
 
           <!--<h2>loan</h2>-->
@@ -95,10 +86,7 @@
             <%= loan_form.text_field :roi, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
 
-            <div class="col-span-12 sm:col-span-12">
-            <%= loan_form.label :Loan_status, class: "block text-sm font-medium text-gray-700" %>
-            <%= loan_form.text_field :status, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
-            </div>
+            <%= loan_form.hidden_field :status, value:"pending" %>
           <% end %>
 
           <!--<h2>guarentor</h2>-->
@@ -122,24 +110,36 @@
             <%= guarentor_form.fields_for :address do |address_form| %>
               <!-- Guarantor address fields here -->
               <div class="col-span-12 sm:col-span-12">
-            <%= address_form.label :Customer_Address, class: "block text-sm font-medium text-gray-700" %>
+            <%= address_form.label :Guarentor_Address, class: "block text-sm font-medium text-gray-700" %>
             <%= address_form.text_field :street, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
 
             <div class="col-span-12 sm:col-span-12">
-            <%= address_form.label :Customer_City, class: "block text-sm font-medium text-gray-700" %>
+            <%= address_form.label :Guarentor_City, class: "block text-sm font-medium text-gray-700" %>
             <%= address_form.text_field :city, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
 
             <div class="col-span-12 sm:col-span-12">
-            <%= address_form.label :Customer_state, class: "block text-sm font-medium text-gray-700" %>
+            <%= address_form.label :Guarentor_state, class: "block text-sm font-medium text-gray-700" %>
             <%= address_form.text_field :state, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
 
             <div class="col-span-12 sm:col-span-12">
-            <%= address_form.label :Customer_zipcode, class: "block text-sm font-medium text-gray-700" %>
+            <%= address_form.label :Guarentor_zipcode, class: "block text-sm font-medium text-gray-700" %>
             <%= address_form.text_field :zipcode, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
             </div>
+            <% end %>
+
+            <%= guarentor_form.fields_for :document do |document_form| %>
+            <div class="col-span-12 sm:col-span-12">
+              <%= document_form.label :Guarentor_Aadhar_card_number, class: "block text-sm font-medium text-gray-700" %>
+              <%= document_form.text_field :aadhar_card, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
+              </div>
+
+              <div class="col-span-12 sm:col-span-12">
+              <%= document_form.label :Guarentor_Pan_card_number, class: "block text-sm font-medium text-gray-700" %>
+              <%= document_form.text_field :pancard, class: "mt-7 block w-full rounded-md border-gray-300 shadow-lg focus:border-indigo-500 focus:ring-indigo-500 sm:text-lg" %>
+              </div>
             <% end %>
 
           <% end %> 

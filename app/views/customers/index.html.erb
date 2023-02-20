@@ -1,4 +1,5 @@
 <%= render "devise/shared/navbar" %>
+<%= render "devise/shared/notice" %>
 <br><br>
 <%# <div class="hidden sm:flex sm:justify-end">
   <div class="flex space-x-5">
@@ -25,16 +26,16 @@
                   Name
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Email
+                  Mobile No.
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Loan Amount
+                  No. of Loan Sanctioned
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  No. of EMI's
+                  Total Amount of all loans
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Pending EMI's
+                  Pending EMI's of all loans
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   ROI in %
@@ -45,36 +46,49 @@
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Guarentor Name
                 </th>
+                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  New loan
+                </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-              <%a=1%>
+              <%count=1%>
               <% @customers.each do |customer| %>
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">  
-                <td><%= a %></td>
-                <% a=a+1 %>
-                <td><%= customer.name %></td>
-                <td><%= customer.email %></td>
+                <td><%= count %></td>
+                <% count=count+1 %>
+                <td><%= link_to customer.name, customer_path(customer) %></td>
+                <td><%= customer.contact %></td>
                 <% loan = Loan.find_by(customer_id: customer.id) %>
-                <td><%= loan.amount %></td>
-                <td><%= loan.emis %></td>
+                <td><%= loan_count = Loan.where(customer_id: customer.id).count %></td>
+                <td><%= loan_amount = Loan.where(customer_id: customer.id).sum("amount::numeric") %></td>
                 <td><%= loan.pending_emi %></td>
                 <td><%= loan.roi %></td>
                 <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                <%if loan.status == "completed"%>
-                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                <%else%>
-                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
-                <%end%>
-                    <h2 class="text-sm font-normal"><%= loan.status %></h2>
-                  </div>
+                <% if customer.loans.any? { |loan| loan.status == 'pending' } %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
+                  Pending
+                <% else %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                  Completed
+                <% end %>
                 </td>
+                </div>
+                <td><%= link_to 'New Loan', new_customer_loan_path(customer_id: customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+
+                </td>
+                
                 <% guarentor = Guarentor.find_by(customer_id: customer.id)%>
                 <td><%= guarentor&.name %></td>
               </tr>
               <% end %>
             </tbody>
           </table>
+          <div class="flex justify-end mt-4 space-x-2">
+            <%= will_paginate @customers,
+            previous_label: '<span class="px-2 py-1 rounded-md bg-gray-200 hover:bg-gray-300">&laquo; Previous</span>',
+            next_label: '<span class="px-2 py-1 rounded-md bg-gray-200 hover:bg-gray-300">Next &raquo;</span>'%>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,36 @@
+<%= form_with(model: [@customer, @loan]) do |form| %>
+ <% if @loan.errors.any? %>
+    <%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:
+    <% @loan.errors.full_messages.each do |message| %>
+    <%= message %>
+    <% end %>
+<% end %>
+<div>
+<%= form.label :amount %>
+<%= form.number_field :amount%>
+</div>
+
+<div>
+<%= form.label :emis %>
+<%= form.text_field :emis %>
+</div>
+
+<div>
+<%= form.label :pending_emi %>
+<%= form.text_field :pending_emi %>
+</div>
+
+<div>
+<%= form.label :roi %>
+<%= form.text_field :roi %>
+</div>
+
+<div>
+<%= form.label :status %>
+<%= form.text_field :status %>
+</div>
+
+<div>
+<%= form.submit %>
+</div>
+<% end %>

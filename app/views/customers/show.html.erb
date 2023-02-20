@@ -1,0 +1,91 @@
+<%= render "devise/shared/navbar" %>
+<%= render "devise/shared/notice" %>
+<div style="margin-bottom:20%">
+  <div class="bg-white rounded-lg shadow-lg p-4">
+  <h1 class="text-xl font-bold mb-4">Customer Details</h1>
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <p class="font-medium text-sm mb-0">Email:</p>
+        <p><%= @customer.email %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Contact:</p>
+        <p><%= @customer.contact %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Address:</p>
+        <p><%= @customer.address.street %></p>
+      </div>
+      
+      <div>
+        <p class="font-medium text-sm mb-1">City:</p>
+        <p><%= @customer.address.city %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pincode:</p>
+        <p><%= @customer.address.zipcode %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Aadhra Card Details:</p>
+        <p><%= @customer.document.aadhar_card %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pancard:</p>
+        <p><%= @customer.document.pancard %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg p-4">
+    <h1 class="text-xl font-bold mb-4">Guarentor Details</h1>
+    <div class="grid grid-cols-2 gap-4">
+    <%guarentor=Guarentor.find_by(customer_id: @customer.id)%>
+      <div>
+        <p class="font-medium text-sm mb-1">Email:</p>
+        <p><%= guarentor.email %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Contact:</p>
+        <p><%= guarentor.contact %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Name:</p>
+        <p><%= guarentor.name %></p>
+      </div>
+      
+      <div>
+        <p class="font-medium text-sm mb-1">Address:</p>
+        <p><%= guarentor.address.street %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">City:</p>
+        <p><%= guarentor.address.city %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pincode:</p>
+        <p><%= guarentor.address.zipcode %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Aadhra Card Details:</p>
+        <p><%= guarentor.document.aadhar_card %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pancard:</p>
+        <p><%= guarentor.document.pancard %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "devise/shared/footer" %>

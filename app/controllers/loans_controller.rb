@@ -14,10 +14,10 @@ class LoansController < ApplicationController
         render :new
       end
     end
-  
+    
     private
     def loan_params
-      params.require(:loan).permit(:amount, :emis, :pending_emi, :roi, :status)
+      params.require(:loan).permit(:amount, :emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at)
     end
   end
   

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_080404) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_105950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_080404) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
   end
 
+  create_table "emis", force: :cascade do |t|
+    t.date "month"
+    t.float "principal"
+    t.float "interest"
+    t.float "balance"
+    t.float "penalty"
+    t.string "status"
+    t.float "paid_amount"
+    t.date "due_at"
+    t.float "paid_at"
+    t.string "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "guarentors", force: :cascade do |t|
     t.string "email"
     t.string "contact"
@@ -63,6 +78,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_080404) do
     t.bigint "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "duration_year"
+    t.integer "duration_month"
+    t.float "penalty"
+    t.date "started_at"
+    t.float "total_payment"
+    t.float "total_interest"
+    t.float "recieved_amount"
+    t.float "emi_amount"
+    t.float "file_charge"
+    t.string "loan_type"
+    t.date "end_at"
+    t.date "closed_at"
     t.index ["customer_id"], name: "index_loans_on_customer_id"
   end
 

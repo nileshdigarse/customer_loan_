@@ -38,7 +38,6 @@ class CustomersController < ApplicationController
       guarentors_attributes: [
         :name, :email, :contact,
         address_attributes: [:street, :city, :state, :zipcode, :addressable_type, :addressable_id],document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id]],
-      loans_attributes: [:amount, :emis, :pending_emi, :roi, :status]
-    )
+      loans_attributes: [:amount, :emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at])
   end
 end

@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @loan = Loan.where(customer_id: @customer.id)
+    @loans = Loan.where(customer_id: @customer.id)
   end
 
   def new
@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
       
   def create    
     @customer = Customer.new(customer_params)
-    if @customer.save
+    if @customer.save!
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity

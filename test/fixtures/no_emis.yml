@@ -1,25 +1,25 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  month: 2023-02-20
+  month: 2023-02-21
   principal: 1.5
-  interest: 1.5
+  interest_amount: 1.5
   balance: 1.5
   penalty: 1.5
   status: MyString
-  paid_amount: 1.5
-  due_at: 2023-02-20
-  paid_at: 1.5
-  amount: MyString
+  due_at: 2023-02-21
+  paid_at: 2023-02-21
+  amount: 1.5
+  loan: one
 
 two:
-  month: 2023-02-20
+  month: 2023-02-21
   principal: 1.5
-  interest: 1.5
+  interest_amount: 1.5
   balance: 1.5
   penalty: 1.5
   status: MyString
-  paid_amount: 1.5
-  due_at: 2023-02-20
-  paid_at: 1.5
-  amount: MyString
+  due_at: 2023-02-21
+  paid_at: 2023-02-21
+  amount: 1.5
+  loan: two

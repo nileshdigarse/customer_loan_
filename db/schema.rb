@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_20_105950) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_21_113224) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,21 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_105950) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
-  end
-
-  create_table "emis", force: :cascade do |t|
-    t.date "month"
-    t.float "principal"
-    t.float "interest"
-    t.float "balance"
-    t.float "penalty"
-    t.string "status"
-    t.float "paid_amount"
-    t.date "due_at"
-    t.float "paid_at"
-    t.string "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "guarentors", force: :cascade do |t|
@@ -93,6 +78,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_105950) do
     t.index ["customer_id"], name: "index_loans_on_customer_id"
   end
 
+  create_table "no_emis", force: :cascade do |t|
+    t.date "month"
+    t.float "principal"
+    t.float "interest_amount"
+    t.float "balance"
+    t.float "penalty"
+    t.string "status"
+    t.date "due_at"
+    t.date "paid_at"
+    t.float "amount"
+    t.bigint "loan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_no_emis_on_loan_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,4 +110,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_105950) do
 
   add_foreign_key "guarentors", "customers"
   add_foreign_key "loans", "customers"
+  add_foreign_key "no_emis", "loans"
 end

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class EmiTest < ActiveSupport::TestCase
+class NoEmiTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

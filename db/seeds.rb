@@ -14,8 +14,8 @@ guarentor_1 = Guarentor.create(name: 'Bob Johnson', email: 'himanshu60.k@gmail.c
 guarentor_2 = Guarentor.create(name: 'Mary Brown', email: 'himanshu60.k@gmail.com', contact: '9479351461', customer: customer_2)
 
 # Loans
-loan_1 = Loan.create(customer: customer_1, amount: '500000', emis: 50, pending_emi: 0, roi: 8.2, status: 'pending')
-loan_2 = Loan.create(customer: customer_2, amount: '200000', emis: 50, pending_emi: 40, roi: 8.2, status: 'pending')
+loan_1 = Loan.create(customer: customer_1, amount: '500000', duration_year: 50, loan_type: 'personal', file_charge: 500, started_at: 2023/02/20)
+loan_2 = Loan.create(customer: customer_2, amount: '500000', duration_year: 50, loan_type: 'personal', file_charge: 500, started_at: 2023/02/15)
 
 # Addresses
 address_1 = Address.create(addressable: customer_1, street: '123 Main St', city: 'Anytown', state: 'CA', zipcode: '12345')

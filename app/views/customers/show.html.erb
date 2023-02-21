@@ -1,9 +1,9 @@
 <%= render "devise/shared/navbar" %>
 <%= render "devise/shared/notice" %>
-<div style="margin-bottom:20%">
-  <div class="bg-white rounded-lg shadow-lg p-4">
-  <h1 class="text-xl font-bold mb-4">Customer Details</h1>
-    <div class="grid grid-cols-2 gap-4">
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:20rem; margin-bottom:5%;margin-top:5%">
+  <div class="bg-white rounded-lg shadow-lg p-4" style="margin-left:0%">
+    <h1 class="text-xl font-bold mb-4">Customer Details</h1>
+    <div class="grid grid-cols-2 gap-6" >
       <div>
         <p class="font-medium text-sm mb-0">Email:</p>
         <p><%= @customer.email %></p>
@@ -40,10 +40,9 @@
       </div>
     </div>
   </div>
-
-  <div class="bg-white rounded-lg shadow-lg p-4">
+  <div class="bg-white rounded-lg shadow-lg p-4" style="margin-left:18%">
     <h1 class="text-xl font-bold mb-4">Guarentor Details</h1>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-6" >
     <%guarentor=Guarentor.find_by(customer_id: @customer.id)%>
       <div>
         <p class="font-medium text-sm mb-1">Email:</p>
@@ -88,4 +87,73 @@
   </div>
 </div>
 
+<section class="container px-4 mx-auto" style="height:30rem; margin-bottom:0%;margin-top:5%">
+  <div class="flex flex-col" >
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+          <header class="px-5 py-4 border-b border-gray-100">
+            <h1 class="font-semibold text-gray-800">Loans </h1><small>No. of Loans :- <%= @loans.count %></small>
+          </header >
+          <table class="table-auto w-full" style="text-align:center" >
+            <thead class="bg-gray-50 dark:bg-gray-800" >
+              <tr>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  S.NO.
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Amount
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Emi's
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Rate of Interest
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Duration (in years)
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Amount with Interest
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Interest on Loan
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Loan Type
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Ending Date
+                </th>
+                
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+              <%count=1%>
+              <% @loans.each do |loan| %>
+              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">  
+                <td><%= count %></td>
+                <% count=count+1 %>
+                <td><%= loan.amount %></td>
+                <td><%= loan.emis %></td>
+                <td><%= loan.roi %></td>
+                <td><%= loan.duration_year %></td>
+                <td><%= loan.total_payment %></td>
+                <td><%= loan.total_interest %></td>
+                <td><%= loan.loan_type %></td>
+                <td><%= loan.end_at %></td>
+                </div>
+                
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%= render "devise/shared/footer" %>
+
+

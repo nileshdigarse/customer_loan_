@@ -1,2 +1,0 @@
-class Emi < ApplicationRecord
-end

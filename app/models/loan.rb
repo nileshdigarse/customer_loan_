@@ -1,19 +1,21 @@
 class Loan < ApplicationRecord
 
+  after_create :create_no_emi
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
   has_many :no_emis
   belongs_to :customer
-  before_save :set_loan_status, :calculate_duration_month, :set_interest_rate, :set_pending_emi, :set_total_payment, :set_total_interest, :set_emi_amount, :set_emis, :set_end_at
+  before_create :set_loan_status, :calculate_duration_month, :set_interest_rate, :set_pending_emi, :set_total_payment, :set_total_interest, :set_emi_amount, :set_emis, :set_end_at
 
   validates :status, inclusion: { in: %w[pending completed] }
+  validates :file_charge, presence: :true
 
   private
   def set_loan_status
-    self.status = self.pending_emi == 0 ? "completed" : "pending"
+    self.status =   pending_emi == 0 ? "completed" : "pending"
   end
 
   def calculate_duration_month
-    self.duration_month = self.duration_year * 12
+    self.duration_month = duration_year * 12
   end
 
   def set_interest_rate
@@ -30,26 +32,37 @@ class Loan < ApplicationRecord
   end
 
   def set_pending_emi
-    self.pending_emi = self.duration_month
+    self.pending_emi = duration_month
   end
 
   def set_total_payment
-    self.total_payment = self.amount.to_f*(1.to_f+(self.roi/100.to_f))**(1.to_f*self.duration_year)
+    self.total_payment = amount.to_f*(1.to_f+(roi/100.to_f))**(1.to_f*duration_year)
   end
 
   def set_total_interest
-    self.total_interest = self.total_payment - self.amount.to_f
+    self.total_interest = total_payment - amount.to_f
   end
 
   def set_emi_amount
-    self.emi_amount = self.total_payment/self.duration_month.to_f
+    self.emi_amount = total_payment/duration_month.to_f
   end
 
   def set_emis
-    self.emis = self.duration_month
+    self.emis = duration_month
   end
   
   def set_end_at
-    self.end_at = self.started_at+(365*5)
+    self.end_at = started_at+(365*duration_year)
+  end
+
+  def create_no_emi
+    range = duration_month.to_i
+    p_amount = amount.to_i/range
+    i_amount = total_interest/range
+    debugger
+    for i in (1..range) do
+      due = started_at.advance(months: i)
+      NoEmi.create(loan_id: id, due_at: due, status: "unpaid", month: i, amount: p_amount+i_amount, principal: p_amount, interest_amount: i_amount)
+    end
   end
 end

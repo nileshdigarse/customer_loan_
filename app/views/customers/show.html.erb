@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<section class="container px-4 mx-auto" style="height:30rem; margin-bottom:0%;margin-top:5%">
+<section class="container px-4 mx-auto" style="height:auto; margin-bottom:5%;margin-top:5%">
   <div class="flex flex-col" >
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -102,10 +102,13 @@
                   S.NO.
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Total Amount
+                  Loan Type
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Total Emi's
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Pending Email
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Rate of Interest
@@ -120,7 +123,11 @@
                   Total Interest on Loan
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Loan Type
+                  Principal Amount
+                </th>
+                
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Status
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Ending Date
@@ -131,19 +138,27 @@
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <%count=1%>
               <% @loans.each do |loan| %>
-              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">  
+              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
                 <td><%= count %></td>
                 <% count=count+1 %>
-                <td><%= loan.amount %></td>
+                <td><%=link_to loan.loan_type.capitalize, no_emi_path(loan) %> loan</td>
                 <td><%= loan.emis %></td>
-                <td><%= loan.roi %></td>
-                <td><%= loan.duration_year %></td>
-                <td><%= loan.total_payment %></td>
-                <td><%= loan.total_interest %></td>
-                <td><%= loan.loan_type %></td>
-                <td><%= loan.end_at %></td>
+                <td><%=loan.pending_emi%></td>
+                <td><%= loan.roi %>%</td>
+                <td><%= loan.duration_year %> years</td>
+                <td>Rs. <%= loan.total_payment.round(2) %></td>
+                <td>Rs. <%= loan.total_interest.round(2) %></td>
+                <td>Rs. <%= loan.amount %></td>
+                <td>
+                <% if loan.status == "pending" %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
+                <% else %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <% end %>
+                  <%=loan.status%>
                 </div>
-                
+                </td>
+                <td><%= loan.end_at %></td>
               </tr>
               <% end %>
             </tbody>

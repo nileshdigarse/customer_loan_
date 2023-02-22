@@ -1,6 +1,6 @@
 <%= render "devise/shared/navbar" %>
 <%= render "devise/shared/notice" %>
-<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:20rem; margin-bottom:10%;margin-top:10%">
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:auto; margin-bottom:0%;margin-top:0%">
 <div class="bg-white rounded-lg shadow-lg p-4" style="margin-right:15%">
   <h1 class="text-xl font-bold mb-4">Customer Details</h1>
     <div class="grid grid-cols-2 gap-4" >
@@ -82,13 +82,14 @@
       </div><br>
 
       <%= form.hidden_field :status, value:"pending" %>
+      <%= form.hidden_field :customer_id, value:@customer.id %>
       
       <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
-          </div>
+        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
+      </div>
     <% end %>
     </div>
-    </div>
+  </div>
 </div>
 <%= render "devise/shared/footer" %>
 

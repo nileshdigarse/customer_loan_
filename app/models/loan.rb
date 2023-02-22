@@ -3,7 +3,7 @@ class Loan < ApplicationRecord
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
   has_many :no_emis
   belongs_to :customer
-  before_save :set_loan_status, :calculate_duration_month, :set_interest_rate, :set_pending_emi, :set_total_payment, :set_total_interest, :set_emi_amount, :set_emis, :set_end_at
+  before_create :set_loan_status, :calculate_duration_month, :set_interest_rate, :set_pending_emi, :set_total_payment, :set_total_interest, :set_emi_amount, :set_emis, :set_end_at
 
   validates :status, inclusion: { in: %w[pending completed] }
 

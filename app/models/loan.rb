@@ -6,6 +6,7 @@ class Loan < ApplicationRecord
   before_create :set_loan_status, :calculate_duration_month, :set_interest_rate, :set_pending_emi, :set_total_payment, :set_total_interest, :set_emi_amount, :set_emis, :set_end_at
 
   validates :status, inclusion: { in: %w[pending completed] }
+  validates :file_charge, presence: :true
 
   private
   def set_loan_status
@@ -50,6 +51,6 @@ class Loan < ApplicationRecord
   end
   
   def set_end_at
-    self.end_at = self.started_at+(365*5)
+    self.end_at = self.started_at+(365*self.duration_year)
   end
 end

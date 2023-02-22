@@ -31,9 +31,6 @@
                   Pending EMI's of all loans
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  ROI in %
-                </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Status
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
@@ -47,28 +44,38 @@
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <%count=1%>
               <% @customers.each do |customer| %>
-              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">  
+              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
                 <td><%= count %></td>
                 <% count=count+1 %>
                 <td><%= link_to customer.name, customer_path(customer) %></td>
                 <td><%= customer.contact %></td>
                 <% loan = Loan.find_by(customer_id: customer.id) %>
-                <td><%= loan_count = Loan.where(customer_id: customer.id).count %></td>
-                <td><%= loan_amount = Loan.where(customer_id: customer.id).sum("amount::numeric") %></td>
-                <td><%= loan.pending_emi %></td>
-                <td><%= loan.roi %></td>
-                <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                <% if customer.loans.any? { |loan| loan.status == 'pending' } %>
-                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
-                  Pending
-                <% else %>
-                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                  Completed
-                <% end %>
-                </td>
-                </div>
+                <% if loan == nil %>
+                  <%for i in (1...5) do%>
+                    <td>Nil</td>
+                  <%end%>
+                <%else%>
+                  <td><%= loan_count = Loan.where(customer_id: customer.id).count %></td>
+                  <td>Rs. <%= loan_amount = Loan.where(customer_id: customer.id).sum("amount::numeric") %></td>
+                  <td>Rs. <%= loan_amount = Loan.where(customer_id: customer.id).sum("total_payment").round(2) %></td>
+                  <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                  <% if customer.loans.any? { |loan| loan.status == 'pending' } %>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
+                    Pending
+                  <% else %>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                    Completed
+                  <% end %>
+                  </td>
+                  </div>
+                <%end%>
                 <% guarentor = Guarentor.find_by(customer_id: customer.id)%>
-                <td><%= guarentor.name %></td>
+                <% if guarentor == nil %>
+                  <td><%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+                  </td>
+                <%else%>
+                  <td><%= guarentor&.name %></td>
+                <%end%>
                 <td><%= link_to 'New Loan', new_customer_loan_path(customer_id: customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
                 </td>
               </tr>

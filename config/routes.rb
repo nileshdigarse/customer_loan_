@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root to: "customers#index"
   resources :customers  do
     resources :loans
+    resources :guarentors
   end
 
   resources :no_emis

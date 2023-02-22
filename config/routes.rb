@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :customers  do
     resources :loans
   end
+
+  resources :no_emis
   # Defines the root path route ("/")
   # root "articles#index"
 end

@@ -1,0 +1,79 @@
+<%= render "devise/shared/navbar" %>
+ <%= render "devise/shared/notice" %>
+<section class="container px-4 mx-auto" style="height:auto; margin-bottom:5%;margin-top:5%">
+  <div class="flex flex-col" >
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+          <header class="px-5 py-4 border-b border-gray-100">
+            <h1 class="font-semibold text-gray-800">EMI's </h1><small>No. of emis :- <%= @emis.count %></small>
+          </header >
+          <table class="table-auto w-full" style="text-align:center" >
+            <thead class="bg-gray-50 dark:bg-gray-800" >
+              <tr>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  S.NO.
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Principal Amount of EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Interest Amount of EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Balance Amount
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Penalty on EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Status
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Due Date of EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Paid Date
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Amount of EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Pay EMI
+                </th>
+                
+                
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+              <% @emis.each do |emi| %>
+              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
+                <td><%= emi.month %></td>
+                <td>Rs. <%= emi.principal.round(2) %></td>
+                <td>Rs. <%= emi.interest_amount.round(2) %></td>
+                <td>Rs. <%= emi&.balance %></td>
+                <td>Rs. <%= emi&.penalty %></td>
+                <td>
+                <% if emi.status == "unpaid" %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
+                <% else %>
+                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                <% end %>
+                  <%=emi.status%>
+                </div>
+                </td>
+                <td><%= emi.due_at %></td>
+                <td><%= emi&.paid_at %></td>
+                <td>Rs. <%= emi.amount.round(2) %></td>
+                <td><%= link_to 'Pay EMI', emi_path(emi.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "devise/shared/footer" %>

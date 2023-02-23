@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_140139) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_23_082321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_140139) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
   end
 
+  create_table "emis", force: :cascade do |t|
+    t.integer "month"
+    t.float "principal"
+    t.float "interest_amount"
+    t.float "balance"
+    t.float "penalty"
+    t.string "status"
+    t.date "due_at"
+    t.date "paid_at"
+    t.float "amount"
+    t.bigint "loan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["loan_id"], name: "index_emis_on_loan_id"
+  end
+
   create_table "guarentors", force: :cascade do |t|
     t.string "email"
     t.string "contact"
@@ -56,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_140139) do
 
   create_table "loans", force: :cascade do |t|
     t.string "amount"
-    t.integer "emis"
+    t.integer "number_emis"
     t.integer "pending_emi"
     t.float "roi"
     t.string "status"
@@ -78,22 +94,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_140139) do
     t.index ["customer_id"], name: "index_loans_on_customer_id"
   end
 
-  create_table "no_emis", force: :cascade do |t|
-    t.integer "month"
-    t.float "principal"
-    t.float "interest_amount"
-    t.float "balance"
-    t.float "penalty"
-    t.string "status"
-    t.date "due_at"
-    t.date "paid_at"
-    t.float "amount"
-    t.bigint "loan_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["loan_id"], name: "index_no_emis_on_loan_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,7 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_140139) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "emis", "loans"
   add_foreign_key "guarentors", "customers"
   add_foreign_key "loans", "customers"
-  add_foreign_key "no_emis", "loans"
 end

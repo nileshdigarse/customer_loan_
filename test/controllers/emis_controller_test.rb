@@ -1,6 +1,6 @@
 require "test_helper"
 
-class NoEmisControllerTest < ActionDispatch::IntegrationTest
+class EmisControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

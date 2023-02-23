@@ -141,8 +141,9 @@
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
                 <td><%= count %></td>
                 <% count=count+1 %>
-                <td><%=link_to loan.loan_type.capitalize, no_emi_path(loan) %> loan</td>
-                <td><%= loan.emis %></td>
+                <td><%=link_to loan.loan_type.capitalize, customer_loan_emis_path(loan_id: loan.id, customer_id: @customer.id) %> loan</td>
+                <% loan.id%>
+                <td><%= loan.number_emis %></td>
                 <td><%=loan.pending_emi%></td>
                 <td><%= loan.roi %>%</td>
                 <td><%= loan.duration_year %> years</td>

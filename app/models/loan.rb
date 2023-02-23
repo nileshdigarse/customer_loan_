@@ -1,7 +1,7 @@
 class Loan < ApplicationRecord
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
 
-  has_many :no_emis
+  has_many :emis
   belongs_to :customer
 
   validates :status, inclusion: { in: %w[pending completed] }
@@ -20,7 +20,7 @@ class Loan < ApplicationRecord
     self.total_payment = amount.to_f * (1.0 + (roi / 100.0))**(duration_year.to_f)
     self.total_interest = total_payment - amount.to_f
     self.emi_amount = total_payment / duration_month.to_f
-    self.emis = duration_month
+    self.number_emis = duration_month
     self.end_at = started_at + (365 * duration_year)
   end
 
@@ -29,7 +29,7 @@ class Loan < ApplicationRecord
       due = started_at.advance(months: i)
       p_amount = amount.to_i / duration_month.to_i
       i_amount = total_interest / duration_month.to_i
-      NoEmi.create(loan_id: id, due_at: due, status: "unpaid", month: i, amount: p_amount + i_amount, principal: p_amount, interest_amount: i_amount, penalty: 0.0)
+      Emi.create(loan_id: id, due_at: due, status: "unpaid", month: i, amount: p_amount + i_amount, principal: p_amount, interest_amount: i_amount, penalty: 0.0)
     end
   end
 end

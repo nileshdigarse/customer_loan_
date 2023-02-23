@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: "customers#index"
   resources :customers  do
-    resources :loans
+    resources :loans do
+      get '/emis' =>'emis#index'
+    end
     resources :guarentors
   end
 
-  resources :no_emis
+  resources :emis
   # Defines the root path route ("/")
   # root "articles#index"
 end

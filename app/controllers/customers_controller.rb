@@ -7,7 +7,6 @@ class CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    debugger
     @loans = Loan.where(customer_id: @customer.id)
   end
 

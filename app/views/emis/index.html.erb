@@ -65,6 +65,8 @@
                 <td><%= emi.due_at %></td>
                 <td><%= emi&.paid_at %></td>
                 <td>Rs. <%= emi.amount.round(2) %></td>
+                <td><%= link_to 'Pay EMI', emi_path(emi.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+                </td>
               </tr>
               <% end %>
             </tbody>

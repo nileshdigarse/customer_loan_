@@ -1,0 +1,16 @@
+<%= render "devise/shared/navbar" %>
+<%= render "devise/shared/notice" %>
+<%= form_for @emi, url: emi_path(@emi), method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.label :paid_at, class: 'control-label' %>
+    <%= f.date_select :paid_at, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status, class: 'control-label' %>
+    <%= f.select :status, options_for_select(['paid', 'due', 'late'], @emi.status), {}, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+<% end %>
+<%= render "devise/shared/footer" %>

@@ -11,32 +11,40 @@
 
       <div>
         <p class="font-medium text-sm mb-1">Principal Amount of EMI:</p>
-        <p><%= @emi.principal %></p>
+        <p><%= @emi.principal.round(2) %></p>
       </div>
 
       <div>
         <p class="font-medium text-sm mb-1">Interest Amount of EMI:</p>
-        <p><%= @emi.interest_amount %></p>
+        <p><%= @emi.interest_amount.round(2) %></p>
       </div>
 
       <div>
-        <p class="font-medium text-sm mb-1">Penalty amount:</p>
-        <p><%= @emi.penalty %></p>
+        <%= form_for @emi, url: edit_emi_path(@emi), method: :patch do |f| %>
+
+        <div>
+          <%= f.label :paid_at %>
+          <%= f.date_select :paid_at %>
+        </div>
+
+        <div>
+          <%= f.label :status %>
+          <%= f.select :status, options_for_select(['paid'], @emi.status) %>
+        </div>
+
+        <%= f.submit 'Save' %>
+      <% end %>
       </div>
 
-      <div>
-        <p class="font-medium text-sm mb-1">Emi Status:</p>
-        <p><%= @emi.status %></p>
-      </div>
 
       <div>
-        <p class="font-medium text-sm mb-1">Paid At:</p>
-        <p><%= @emi.paid_at %></p>
+        <p class="font-medium text-sm mb-1">Due At:</p>
+        <p><%= @emi.due_at %></p>
       </div>
 
       <div>
         <p class="font-medium text-sm mb-1">Total Amount:</p>
-        <p><%= @emi.amount %></p>
+        <p><%= @emi.amount.round(2) %></p>
       </div>
     </div>
   </div>

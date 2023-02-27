@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  
 
   devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
@@ -9,11 +10,15 @@ Rails.application.routes.draw do
   resources :customers  do
     resources :loans do
       get '/emis' =>'emis#index'
+      get :update_all_emis, on: :member
     end
     resources :guarentors
   end
 
-  resources :emis
+  resources :emis do
+    get :pay_emi, on: :member
+  end
+  
   # Defines the root path route ("/")
   # root "articles#index"
 end

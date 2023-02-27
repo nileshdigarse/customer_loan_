@@ -2,8 +2,16 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @customers = Customer.paginate(page: params[:page], per_page: 5)
+    @customers = if params[:query]
+      @customers = Customer.where("customers.name LIKE ?",["%#{params[:query]}%"])
+      @customers = @customers.paginate(page: params[:page], per_page: 5)
+    else
+      @customers = Customer.all
+      @customers = @customers.paginate(page: params[:page], per_page: 5)
+    end
   end
+
+  
 
   def show
     @customer = Customer.find(params[:id])
@@ -22,6 +30,7 @@ class CustomersController < ApplicationController
       
   def create    
     @customer = Customer.new(customer_params)
+    @customer.name.downcase!
     if @customer.save!
       redirect_to root_path
     else

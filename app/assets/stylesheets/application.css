@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ body {
+    background-image: url('/assets/17973908.jpg');
+  }

@@ -44,6 +44,7 @@
     <h1 class="text-xl font-bold mb-4">Guarentor Details</h1>
     <div class="grid grid-cols-2 gap-6" >
     <%guarentor=Guarentor.find_by(customer_id: @customer.id)%>
+    <%if guarentor.present? %>
       <div>
         <p class="font-medium text-sm mb-1">Email:</p>
         <p><%= guarentor.email %></p>
@@ -82,6 +83,10 @@
       <div>
         <p class="font-medium text-sm mb-1">Pancard:</p>
         <p><%= guarentor.document.pancard %></p>
+        <%else%>
+        <h1>Please Click Below to add Guarentor<h1>
+        <%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: @customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+        <%end%>
       </div>
     </div>
   </div>
@@ -94,6 +99,8 @@
         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
           <header class="px-5 py-4 border-b border-gray-100">
             <h1 class="font-semibold text-gray-800">Loans </h1><small>No. of Loans :- <%= @loans.count %></small>
+            <td><%= link_to 'New Loan', new_customer_loan_path(customer_id: @customer.id), class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded', style: "margin-left: 62em;" %>
+                </td>
           </header >
           <table class="table-auto w-full" style="text-align:center" >
             <thead class="bg-gray-50 dark:bg-gray-800" >
@@ -108,7 +115,7 @@
                   Total Emi's
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Pending Email
+                  Pending Emi's
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Rate of Interest
@@ -131,6 +138,9 @@
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Ending Date
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Closed at
                 </th>
                 
               </tr>
@@ -160,6 +170,7 @@
                 </div>
                 </td>
                 <td><%= loan.end_at %></td>
+                <td><%= loan&.closed_at %></td>
               </tr>
               <% end %>
             </tbody>

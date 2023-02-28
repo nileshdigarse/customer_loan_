@@ -2,18 +2,18 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: localhost
   username: postgres
-  password: postgres
+  password: 123456
+  host: localhost
 
 development:
   <<: *default
-  database: customer_loan_database_development
+  database: customer_loan_database_development2
 
 test:
   <<: *default
-  database: customer_loan_database_test
+  database: customer_loan_database_test2
 
 production:
   <<: *default
-  database: customer_loan_database_production
+  database: customer_loan_database_production2

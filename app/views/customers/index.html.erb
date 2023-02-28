@@ -1,13 +1,24 @@
 <%= render "devise/shared/navbar" %>
 <%= render "devise/shared/notice" %>
+
 <section class="container px-4 mx-auto" style="height:auto; margin-bottom:8%;margin-top:5%">
+<div class="w-1/3" style="margin-left: 50em;">
+  <form method="GET" action="/customers">
+    <div class="flex">
+      <input class="w-3/4 py-2 px-3 rounded-l-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" placeholder="Search by Name" name="query">
+      <button class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r-md" type="submit">Search</button>
+      
+    </div>
+  </form>
+</div><br>
+
   <div class="flex flex-col" >
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
           <header class="px-5 py-4 border-b border-gray-100">
-            <h2 class="font-semibold text-gray-800">Customers </h2><small>Total Customer :- <%= @customers.count %></small>
-            <a href="/customers/new" class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' style="margin-left: 65em;">Create Customer</a>
+            <h2 class="font-semibold">Customers </h2><small>Total Customer :- <%= @customers.count %></small>
+            <a href="/customers/new" class='bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ' style="margin-left: 65em;">Create Customer</a>
           </header >
           <table class="table-auto w-full" style="text-align:center" >
             <thead class="bg-gray-50 dark:bg-gray-800" >
@@ -35,9 +46,6 @@
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Guarentor Name
-                </th>
-                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  New loan
                 </th>
               </tr>
             </thead>
@@ -71,13 +79,11 @@
                 <%end%>
                 <% guarentor = Guarentor.find_by(customer_id: customer.id)%>
                 <% if guarentor == nil %>
-                  <td><%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+                  <td><%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: customer.id), class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded' %>
                   </td>
                 <%else%>
                   <td><%= guarentor&.name %></td>
                 <%end%>
-                <td><%= link_to 'New Loan', new_customer_loan_path(customer_id: customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-                </td>
               </tr>
               <% end %>
             </tbody>

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :emis do
     get :pay_emi, on: :member
   end
+
+  resources :guarentors
   
   # Defines the root path route ("/")
   # root "articles#index"

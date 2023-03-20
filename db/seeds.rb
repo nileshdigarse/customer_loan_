@@ -6,26 +6,74 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 # Customers
-customer_1 = Customer.create(name: 'John Doe', email: 'himanshu60.k@gmail.com', contact: '9479351461')
-customer_2 = Customer.create(name: 'Jane Smith', email: 'himanshu60.k@gmail.com', contact: '9479351461')
+require 'faker'
 
-# Guarantors
-guarentor_1 = Guarentor.create(name: 'Bob Johnson', email: 'himanshu60.k@gmail.com', contact: '9479351461', customer: customer_1)
-guarentor_2 = Guarentor.create(name: 'Mary Brown', email: 'himanshu60.k@gmail.com', contact: '9479351461', customer: customer_2)
+100.times do
+  customer = Customer.create(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+    updated_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+    contact: Faker::PhoneNumber.phone_number
+  )
 
-# Loans
-loan_1 = Loan.create(customer: customer_1, amount: '500000', duration_year: 50, loan_type: 'personal', file_charge: 500, started_at: 2023/02/20)
-loan_2 = Loan.create(customer: customer_2, amount: '500000', duration_year: 50, loan_type: 'personal', file_charge: 500, started_at: 2023/02/15)
+  # create a random address for the customer
+  Address.create(
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    zipcode: Faker::Address.zip_code,
+    addressable: customer
+  )
 
-# Addresses
-address_1 = Address.create(addressable: customer_1, street: '123 Main St', city: 'Anytown', state: 'CA', zipcode: '12345')
-address_2 = Address.create(addressable: customer_2, street: '456 Elm St', city: 'Othertown', state: 'NY', zipcode: '67890')
-address_3 = Address.create(addressable: guarentor_1, street: '789 Oak St', city: 'Somewhere', state: 'TX', zipcode: '45678')
-address_4 = Address.create(addressable: guarentor_2, street: '321 Pine St', city: 'Nowhere', state: 'FL', zipcode: '23456')
+  # create a random document for the customer
+  Document.create(
+    aadhar_card: Faker::IDNumber.valid,
+    pancard: Faker::IDNumber.valid,
+    documentable: customer
+  )
+
+  guarentor = Guarentor.create(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    contact: Faker::PhoneNumber.phone_number,
+    customer: customer,
+    created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+    updated_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+  )
+
+  # create a random address for the customer
+  Address.create(
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    zipcode: Faker::Address.zip_code,
+    addressable: guarentor
+  )
+
+  # create a random document for the customer
+  Document.create(
+    aadhar_card: Faker::IDNumber.valid,
+    pancard: Faker::IDNumber.valid,
+    documentable: guarentor
+  )
+
+    Loan.create(
+      amount: Faker::Number.between(from: 10000, to: 1000000),
+      
+      status: "pending",
+      customer: customer,
+      created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+      updated_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+      duration_year: Faker::Number.between(from: 1, to: 10),
+      
+      started_at: Faker::Date.between(from: Date.today - 6.months, to: Date.today),
+      
+      file_charge: Faker::Number.between(from: 500, to: 5000),
+      loan_type: 'personal',
+      
+    )
+end
 
 
-# Documents
-document_1 = Document.create(documentable: customer_1, aadhar_card: '8888888888', pancard: 'imjpk1234')
-document_2 = Document.create(documentable: customer_2, aadhar_card: '8888888888', pancard: 'imjpk1234')
-document_3 = Document.create(documentable: guarentor_1, aadhar_card: '8888888888', pancard: 'imjpk1234')
-document_4 = Document.create(documentable: guarentor_2, aadhar_card: '8888888888', pancard: 'imjpk1234')
+  

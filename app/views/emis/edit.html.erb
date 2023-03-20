@@ -1,16 +1,35 @@
 <%= render "devise/shared/navbar" %>
 <%= render "devise/shared/notice" %>
-<%= form_for @emi, url: emi_path(@emi), method: :patch do |f| %>
-  <div class="form-group">
-    <%= f.label :paid_at, class: 'control-label' %>
-    <%= f.date_select :paid_at, class: 'form-control' %>
+
+<div class="w-full max-w-md space-y-8 mx-auto">
+  <div>
+    <!--<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">-->
+    <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Pay EMI</h2>
   </div>
 
-  <div class="form-group">
-    <%= f.label :status, class: 'control-label' %>
-    <%= f.select :status, options_for_select(['paid', 'due', 'late'], @emi.status), {}, class: 'form-control' %>
-  </div>
+  <%= form_for @emi, url: emi_path(@emi), method: :patch do |form| %>
+  <div class="-space-y-px rounded-md shadow-sm">
+    <div>
+      <%= form.label :paid_at %>
+      <%= form.date_field :paid_at, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", value: Date.today.to_s, type: :date %>
+    </div><br>
 
-  <%= f.submit 'Save', class: 'btn btn-primary' %>
-<% end %>
-<%= render "devise/shared/footer" %>
+    <div>
+      <%= form.label :status %>
+      <%= form.select :status, options_for_select(['', 'paid'], @emi.status), {}, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+    </div><br>
+
+    <div>
+      <%= form.label :penalty %>
+      <%= form.text_field :penalty, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Penalty Amount"%>
+    </div><br>
+
+    <button type="submit" class="inline-flex ml-auto justify-center rounded-md border border-transparent bg-gray-800 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+    Pay EMI
+    </button>
+  <% end %>
+  </div>
+</div>
+<div class='fixed bottom-0 w-full'>
+  <%= render "devise/shared/footer" %>
+</div>

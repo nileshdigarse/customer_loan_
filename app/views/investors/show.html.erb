@@ -1,0 +1,49 @@
+<%= render "devise/shared/navbar" %>
+<%= render "devise/shared/notice" %>
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:auto; margin-bottom:0%;margin-top:0%">
+<div class="bg-white rounded-lg shadow-lg p-4" style="margin-right:15%">
+  <h1 class="text-xl font-bold mb-4">Investor Details</h1>
+    <div class="grid grid-cols-2 gap-0" style="height: auto; width: auto;" >
+      
+      <div>
+        <p class="font-medium text-sm mb-0">Name:</p>
+        <p><%= @investor.name %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-0">Email:</p>
+        <p><%= @investor.email %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Contact:</p>
+        <p><%= @investor.contact_no %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Address:</p>
+        <p><%= @investor.address.street %></p>
+      </div>
+      
+      <div>
+        <p class="font-medium text-sm mb-1">City:</p>
+        <p><%= @investor.address.city %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pincode:</p>
+        <p><%= @investor.address.zipcode %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Aadhra Card Details:</p>
+        <p><%= @investor.document.aadhar_card %></p>
+      </div>
+
+      <div>
+        <p class="font-medium text-sm mb-1">Pancard:</p>
+        <p><%= @investor.document.pancard %></p>
+      </div>
+
+    </div>
+  </div>

@@ -20,8 +20,6 @@ class LoansController < ApplicationController
 
   def update_all_emis
     @loan = Loan.find(params[:id])
-
-    debugger
     @customer = Customer.find(params[:customer_id])
     @emis = @loan.emis.where(status:"unpaid")
     if @emis.update_all(status: 'paid',paid_at: Date.today)

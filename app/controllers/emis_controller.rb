@@ -5,12 +5,16 @@ class EmisController < ApplicationController
 
   end
 
-  def pay_emi
+  def edit
     @emi = Emi.find(params[:id])
-    if @emi.update(status: 'paid', paid_at: Date.today)
+  end
+
+  def update
+    @emi = Emi.includes(:loan => :customer).find(params[:id])
+    if @emi.update(emi_params)
       @loan = @emi.loan
       @loan.update(pending_emi: @loan.pending_emi - 1)
-      redirect_to request.referrer, notice: 'EMI has been marked as paid.'
+      redirect_to customer_loan_emis_path(customer_id: @loan.customer_id, loan_id: @loan.id), notice: 'EMI has been marked as paid.'
     else
       redirect_to @loan.customer, alert: 'Failed to mark EMI as paid.'
     end
@@ -19,6 +23,6 @@ class EmisController < ApplicationController
   private
   
   def emi_params
-    params.require(:emi).permit( :paid_at, :status)
+    params.require(:emi).permit( :paid_at, :status, :penalty)
   end
 end

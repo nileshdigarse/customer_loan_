@@ -1,7 +1,7 @@
 class Loan < ApplicationRecord
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
 
-  has_many :emis
+  has_many :emis, dependent: :destroy
   belongs_to :customer
 
   validates :status, inclusion: { in: %w[pending completed] }

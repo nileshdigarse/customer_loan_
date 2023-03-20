@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_23_082321) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_20_113157) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_082321) do
     t.index ["customer_id"], name: "index_guarentors_on_customer_id"
   end
 
+  create_table "investor_transactions", force: :cascade do |t|
+    t.float "amount_added"
+    t.float "amount_withdrawal"
+    t.bigint "investor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investor_id"], name: "index_investor_transactions_on_investor_id"
+  end
+
+  create_table "investors", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "contact_no"
+    t.float "profit_amount"
+    t.float "total_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+  end
+
   create_table "loans", force: :cascade do |t|
     t.string "amount"
     t.integer "number_emis"
@@ -110,5 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_082321) do
 
   add_foreign_key "emis", "loans"
   add_foreign_key "guarentors", "customers"
+  add_foreign_key "investor_transactions", "investors"
   add_foreign_key "loans", "customers"
 end

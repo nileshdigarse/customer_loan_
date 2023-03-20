@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  contact_no: MyString
+  profit_amount: 1.5
+  total_amount: 1.5
+
+two:
+  name: MyString
+  email: MyString
+  contact_no: MyString
+  profit_amount: 1.5
+  total_amount: 1.5

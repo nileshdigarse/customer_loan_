@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   resources :guarentors
+
+  resources :investors
   
   # Defines the root path route ("/")
   # root "articles#index"

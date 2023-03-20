@@ -70,7 +70,7 @@ require 'faker'
       started_at: Faker::Date.between(from: Date.today - 6.months, to: Date.today),
       
       file_charge: Faker::Number.between(from: 500, to: 5000),
-      loan_type: 'personal',
+      loan_type: 'personal'
       
     )
 end

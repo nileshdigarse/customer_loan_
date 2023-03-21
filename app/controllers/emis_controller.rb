@@ -2,7 +2,6 @@ class EmisController < ApplicationController
   def index
     @loan = Loan.find(params[:loan_id])
     @emis = Emi.where(loan_id: @loan.id).order(Arel.sql("CASE WHEN status = 'unpaid' THEN 0 ELSE 1 END, month ASC"))
-
   end
 
   def edit

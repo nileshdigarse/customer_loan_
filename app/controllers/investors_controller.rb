@@ -12,6 +12,7 @@ class InvestorsController < ApplicationController
 
   def show
     @investor = Investor.find(params[:id])
+    @investor_transactions = InvestorTransaction.all
   end
 
   private

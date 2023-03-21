@@ -21,7 +21,11 @@ Rails.application.routes.draw do
 
   resources :guarentors
 
-  resources :investors
+  resources :investors do
+    member do
+      get 'show_by_debit'
+    end
+  end
   
   # Defines the root path route ("/")
   # root "articles#index"

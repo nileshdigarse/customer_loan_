@@ -12,6 +12,12 @@ class InvestorsController < ApplicationController
 
   def show
     @investor = Investor.find(params[:id])
+    @investor_transactions = InvestorTransaction.where(investor_id: params[:id])
+  end
+
+  def show_by_debit
+    @investor = Investor.find(params[:id])
+    @investor_transactions = InvestorTransaction.where(investor_id: params[:id])
   end
 
   private

@@ -55,26 +55,27 @@
         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
           <header class="px-5 py-4 border-b border-gray-100">
             <h1 class="font-semibold text-gray-800">Transactions </h1><small>No. of Transaction :- <%= @investor_transactions.length %></small>
-            <%= link_to "Debit History", show_by_debit_investor_path(id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', style: "margin-left: 45em;" %>
-            <%= link_to "Add Money", new_investor_investor_transaction_path(investor_id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+            <%= link_to "Credit History", investor_path(id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', style: "margin-left: 65em;" %>
           </header >
           <table class="table-auto w-full" style="text-align:center" >
             <thead class="bg-gray-50 dark:bg-gray-800" >
               <tr>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  <%= link_to "Date", :sort => "created_at"%>
+                  Date
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Amount Credited
+                  Amount Debited
                 </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <% @investor_transactions.each do |investor_transaction| %>
+              <% if investor_transaction.amount_withdrawal != nil%>
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'> 
                 <td><%= investor_transaction.created_at %></td>
-                <td>Rs. <%= investor_transaction.amount_added.round(2) %></td>
+                <td>Rs. <%= investor_transaction.amount_withdrawal %></td>
               </tr>
+              <%end%>
               <% end %>
             </tbody>
           </table>

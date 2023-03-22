@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     member do
       get 'show_by_debit'
     end
+    resources :investor_transactions
   end
-  
   # Defines the root path route ("/")
   # root "articles#index"
 end

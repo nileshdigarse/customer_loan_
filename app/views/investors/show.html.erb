@@ -55,13 +55,14 @@
         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
           <header class="px-5 py-4 border-b border-gray-100">
             <h1 class="font-semibold text-gray-800">Transactions </h1><small>No. of Transaction :- <%= @investor_transactions.length %></small>
-            <%= link_to "Debit History", show_by_debit_investor_path(id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', style: "margin-left: 65em;" %>
+            <%= link_to "Debit History", show_by_debit_investor_path(id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded', style: "margin-left: 45em;" %>
+            <%= link_to "Add Money", new_investor_investor_transaction_path(investor_id: @investor.id), class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
           </header >
           <table class="table-auto w-full" style="text-align:center" >
             <thead class="bg-gray-50 dark:bg-gray-800" >
               <tr>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Date
+                  <%= link_to "Date", :sort => "created_at"%>
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Amount Credited

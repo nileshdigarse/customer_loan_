@@ -70,10 +70,12 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <% @investor_transactions.each do |investor_transaction| %>
+              <% if investor_transaction.amount_withdrawal != nil%>
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'> 
                 <td><%= investor_transaction.created_at %></td>
-                <td>Rs. <%= investor_transaction.amount_withdrawal.round(2) %></td>
+                <td>Rs. <%= investor_transaction.amount_withdrawal %></td>
               </tr>
+              <%end%>
               <% end %>
             </tbody>
           </table>

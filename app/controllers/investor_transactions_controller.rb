@@ -7,13 +7,18 @@ class InvestorTransactionsController < ApplicationController
   def create
     @investor = Investor.find(params[:investor_id])
     @investor_transaction = @investor.investor_transactions.new(investor_transaction_params)
-
+    new_key_value = params[:investor_transaction][:new_key]
     if @investor_transaction.save
-      redirect_to @investor, notice: 'Investor transaction was successfully created.'
+      unless params[:investor_transaction][:type] == "withdraw"
+        redirect_to @investor, notice: 'Investor transaction was successfully created.'
+      else
+        redirect_to show_by_debit_investor_path(id: @investor.id), notice: 'Investor transaction was successfully created.'
+      end
     else
       render :new
     end
   end
+
 
   private
   def investor_transaction_params

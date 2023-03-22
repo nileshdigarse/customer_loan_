@@ -91,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_113157) do
   end
 
   create_table "loans", force: :cascade do |t|
-    t.string "amount"
+    t.float "amount"
     t.integer "number_emis"
     t.integer "pending_emi"
     t.float "roi"

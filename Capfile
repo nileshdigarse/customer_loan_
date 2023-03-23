@@ -1,11 +1,18 @@
+require "capistrano/bundler"
+require "capistrano/rails/assets"
+require "capistrano/rails/migrations"
+require 'capistrano/rvm'
+require 'capistrano/puma'
+install_plugin Capistrano::Puma
 # Load DSL and set up stages
 require "capistrano/setup"
 
 # Capfile
-require 'capistrano/rvm'
+
 
 # Include default deployment tasks
 require "capistrano/deploy"
+
 
 # Load the SCM plugin appropriate to your project:
 #

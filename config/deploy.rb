@@ -12,6 +12,14 @@ set :linked_files, %w{config/database.yml}
 set :rails_env, 'production'
 set :keep_releases, 2
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+# Define the stages that you want to deploy to
+set :stages, %w(production staging)
+
+# Set the default stage
+set :default_stage, 'staging'
+
+# Load the appropriate stage based on the current environment
+require 'capistrano/ext/multistage'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"

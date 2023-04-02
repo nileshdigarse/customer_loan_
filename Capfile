@@ -1,5 +1,6 @@
 # Load DSL and set up stages
-require "capistrano/setup"
+# require "capistrano/setup"
+require 'capistrano/3.17.2'
 
 # Include default deployment tasks
 require "capistrano/deploy"

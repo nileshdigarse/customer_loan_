@@ -1,8 +1,19 @@
-production:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: loan_production
-  username: customer_loan_database
-  password: customer_loan_database
+  pool: 5
+  username: postgres
+  password: 123456
   host: localhost
-  port: 5432
+
+development:
+  <<: *default
+  database: customer_loan_database_development2
+
+test:
+  <<: *default
+  database: customer_loan_database_test2
+
+production:
+  <<: *default
+  database: customer_loan_database_production

@@ -67,6 +67,11 @@
       </div><br>
 
       <div>
+        <%= form.label :roi, class: "sr-only" %>
+        <%= form.text_field :roi , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Interest Rate"%>
+      </div><br>
+
+      <div>
         <%= form.label :loan_type %>
         <%= form.select :loan_type,[["personal"], ["business"], ["home"], ["student"]] , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Type of loan"%>
       </div><br>

@@ -10,12 +10,6 @@ class Loan < ApplicationRecord
   before_create do
     self.status = pending_emi == 0 ? "completed" : "pending"
     self.duration_month = duration_year * 12
-    case loan_type
-    when 'personal' then self.roi = 11.1
-    when 'business' then self.roi = 15.0
-    when 'home' then self.roi = 8.4
-    when 'student' then self.roi = 10
-    end
     self.pending_emi = duration_month
     self.total_payment = amount.to_f * (1.0 + (roi / 100.0))**(duration_year.to_f)
     self.total_interest = total_payment - amount.to_f

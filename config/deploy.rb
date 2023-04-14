@@ -31,7 +31,7 @@ desc 'Restart Puma server using nohup'
 task :restart_puma do
   on roles(:app) do
     execute "rm /home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock" 
-    run "cd /home/ubuntu/customer_loan/current && nohup bundle exec puma -e production -b unix:/home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock &"
+    execute "cd /home/ubuntu/customer_loan/current && nohup bundle exec puma -e production -b unix:/home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock &"
   end
 end
 after :deploy, :restart_puma

@@ -59,7 +59,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '3.84.50.191', user: 'ubuntu', roles: %w{web app db}, primary: 'true'
+server '34.201.45.30', user: 'ubuntu', roles: %w{web app db}, primary: 'true'
 set :deploy_to, '/home/ubuntu/customer_loan'
 set :branch, 'main'
 set :stage, :production

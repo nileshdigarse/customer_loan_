@@ -12,13 +12,13 @@ set :keep_releases, 3
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-3.2.0' # Should match ruby version
 
-set :puma_rackup, -> { File.join(current_path, 'config.ru') }
-set :puma_state, "#{shared_path}/tmp/pids/puma.state"
-set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
-set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"    #accept array for multi-bind
-set :puma_conf, "#{shared_path}/puma.rb"
-set :puma_access_log, "#{shared_path}/log/puma_error.log"
-set :puma_error_log, "#{shared_path}/log/puma_access.log"
+set :puma_rackup, -> { File.join('/home/ubuntu/customer_loan/', 'config.ru') }
+set :puma_state, "/home/ubuntu/customer_loan/shared/tmp/pids/puma.state"
+set :puma_pid, "/home/ubuntu/customer_loan/shared/tmp/pids/puma.pid"
+set :puma_bind, "unix:///home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock"    #accept array for multi-bind
+set :puma_conf, "/home/ubuntu/customer_loan/shared/puma.rb"
+set :puma_access_log, "/home/ubuntu/customer_loan/shared/log/puma_error.log"
+set :puma_error_log, "/home/ubuntu/customer_loan/shared/log/puma_access.log"
 set :puma_role, :app
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
 set :puma_threads, [0, 8]
@@ -26,3 +26,12 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
+
+desc 'Restart Puma server using nohup'
+task :restart_puma do
+  on roles(:app) do
+    execute "rm /home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock"
+    execute "cd /home/ubuntu/customer_loan/current && nohup bundle exec puma -e production -b unix:/home/ubuntu/customer_loan/shared/tmp/sockets/puma.sock &"
+  end
+end
+after :deploy, :restart_puma

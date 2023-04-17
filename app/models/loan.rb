@@ -5,7 +5,7 @@ class Loan < ApplicationRecord
   belongs_to :customer
 
   validates :status, inclusion: { in: %w[pending completed] }
-  validates :file_charge, presence: true
+  validates :amount, :duration_year, presence: true
 
   before_create do
     self.status = pending_emi == 0 ? "completed" : "pending"

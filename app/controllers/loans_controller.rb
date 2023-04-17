@@ -14,7 +14,7 @@ class LoansController < ApplicationController
     if @loan.save
       redirect_to @customer, notice: 'Loan was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class LoansController < ApplicationController
       redirect_to @loan, alert: "Failed to update EMIs."
     end
   end
-  
+
   private
 
   def loan_params

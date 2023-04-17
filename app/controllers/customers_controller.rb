@@ -31,8 +31,8 @@ class CustomersController < ApplicationController
   def create    
     @customer = Customer.new(customer_params)
     @customer.name.downcase!
-    if @customer.save!
-      redirect_to root_path
+    if @customer.save
+      redirect_to root_path, flash: { success: 'Customer Created Successfully' }
     else
       render :new, status: :unprocessable_entity
     end

@@ -59,11 +59,13 @@
       <div>
       <%= form.label :amount, class: "sr-only" %>
       <%= form.text_field :amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Amount"%>
+      <%= show_error_message(@loan, :amount) %>
       </div><br>
 
       <div>
       <%= form.label :duration_year, class: "sr-only" %>
       <%= form.number_field :duration_year, in: 1.0..30.0, step: 1 , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Duration in Years"%>
+      <%= show_error_message(@loan, :duration_year) %>
       </div><br>
 
       <div>

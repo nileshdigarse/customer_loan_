@@ -1,4 +1,5 @@
 class GuarentorsController < ApplicationController
+  before_action :fetch_customer, only: [:new, :create]
 
   def index
     @guarentors = if params[:query]
@@ -11,14 +12,13 @@ class GuarentorsController < ApplicationController
   end
 
   def new
-    @customer = Customer.find(params[:customer_id])
     @guarentor = Guarentor.new
   end
       
   def create 
     @guarentor = Guarentor.new(guarentor_params)
-    if @guarentor.save!
-      redirect_to root_path,  flash: { success: "Guarentor Created Successfully" }
+    if @guarentor.save
+      redirect_to root_path, flash: { success: 'Guarentor Created Successfully' }
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,5 +30,9 @@ class GuarentorsController < ApplicationController
     params.require(:guarentor).permit(:name, :email, :contact, :customer_id,
       address_attributes: [:street, :city, :state, :zipcode, :addressable_type, :addressable_id],
       document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id],)
+  end
+
+  def fetch_customer
+    @customer = Customer.find(params[:customer_id])
   end
 end

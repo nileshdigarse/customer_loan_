@@ -52,6 +52,7 @@
       <div>
         <%= form.label :name, class: "sr-only" %>
         <%= form.text_field :name , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Name"%>
+        <%= show_error_message(@guarentor, :name) %>
       </div><br>
 
       <%= form.hidden_field :customer_id, value: @customer.id %>
@@ -59,32 +60,38 @@
       <div>
         <%= form.label :email, class: "sr-only" %>
         <%= form.text_field :email , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Email"%>
+        <%= show_error_message(@guarentor, :email) %>
       </div><br>
 
       <div>
         <%= form.label :contact, class: "sr-only" %>
         <%= form.text_field :contact , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor contact"%>
+        <%= show_error_message(@guarentor, :contact) %>
       </div><br>
 
       <%= form.fields_for :address, @guarentor.build_address do |address_form| %>
         <div>
           <%= address_form.label :street, class: "sr-only" %>
           <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Address"%>
+          <%= show_error_message(@guarentor.address, :street) %>
         </div><br>
 
         <div>
           <%= address_form.label :city, class: "sr-only" %>
           <%= address_form.text_field :city , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor City"%>
+          <%= show_error_message(@guarentor.address, :city) %>
         </div><br>
 
         <div>
           <%= address_form.label :state, class: "sr-only" %>
           <%= address_form.text_field :state , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor State"%>
+          <%= show_error_message(@guarentor.address, :state) %>
         </div><br>
 
         <div>
           <%= address_form.label :zipcode, class: "sr-only" %>
           <%= address_form.text_field :zipcode , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Pincode"%>
+          <%= show_error_message(@guarentor.address, :zipcode) %>
         </div><br>
       <% end %>
 
@@ -92,11 +99,13 @@
         <div>
           <%= document_form.label :aadhar_card, class: "sr-only" %>
           <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor aadhar card"%>
+          <%= show_error_message(@guarentor.document, :aadhar_card) %>
         </div><br>
 
         <div>
           <%= document_form.label :pancard, class: "sr-only" %>
           <%= document_form.text_field :pancard , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Pancard"%>
+          <%= show_error_message(@guarentor.document, :pancard) %>
         </div><br>
       <%end%>
   

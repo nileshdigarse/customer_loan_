@@ -8,4 +8,8 @@ class Customer < ApplicationRecord
     # accepts_nested_attributes_for :guarentors, allow_destroy: true
     accepts_nested_attributes_for :document, allow_destroy: true
     accepts_nested_attributes_for :address, allow_destroy: true
+
+    validates :name, :contact, :email, presence: true
+    validates :email, uniqueness: true
+    validates :contact, length: { is: 10 }
 end

@@ -54,7 +54,7 @@
               <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
                 <td><%= count %></td>
                 <% count=count+1 %>
-                <td><%= link_to customer.name.capitalize, customer_path(customer) %></td>
+                <td class="text-indigo-500"><%= link_to customer.name.capitalize, customer_path(customer) %></td>
                 <td><%= customer.contact %></td>
                 <% loan = Loan.find_by(customer_id: customer.id) %>
                 <% if loan == nil %>

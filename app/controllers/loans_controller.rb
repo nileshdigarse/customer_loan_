@@ -1,10 +1,15 @@
 class LoansController < ApplicationController
+
+  def index 
+    @loans = Loan.where(status: 'pending')
+  end
+
   def new
     @customer = Customer.find(params[:customer_id])
     if Guarentor.find_by(customer_id:@customer&.id).present?
     @loan = Loan.new
     else
-      redirect_to root_path, notice: 'First create Guarentor of the Customer'
+      redirect_to customers_path, notice: 'First create Guarentor of the Customer'
     end
   end
 

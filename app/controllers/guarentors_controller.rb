@@ -18,7 +18,7 @@ class GuarentorsController < ApplicationController
   def create 
     @guarentor = Guarentor.new(guarentor_params)
     if @guarentor.save
-      redirect_to root_path, flash: { success: 'Guarentor Created Successfully' }
+      redirect_to customers_path, flash: { success: 'Guarentor Created Successfully' }
     else
       render :new, status: :unprocessable_entity
     end

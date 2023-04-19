@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'     
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root to: "customers#index"
+  root to: "loans#index"
   resources :customers  do
     resources :loans do
       get '/emis' =>'emis#index'

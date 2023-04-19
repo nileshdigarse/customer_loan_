@@ -11,8 +11,6 @@ class CustomersController < ApplicationController
     end
   end
 
-  
-
   def show
     @customer = Customer.find(params[:id])
     @loans = Loan.where(customer_id: @customer.id)
@@ -32,7 +30,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     @customer.name.downcase!
     if @customer.save
-      redirect_to root_path, flash: { success: 'Customer Created Successfully' }
+      redirect_to customers_path, flash: { success: 'Customer Created Successfully' }
     else
       render :new, status: :unprocessable_entity
     end

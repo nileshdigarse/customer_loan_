@@ -12,8 +12,8 @@ development:
 
 test:
   <<: *default
-  database: customer_loan_database_test2
-
+ url: <%= ENV['DATABASE_URL'] %>
+ 
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>

@@ -13,8 +13,8 @@ development:
 
 test:
   <<: *default
- url: <%= ENV['DATABASE_URL'] %>
- 
+  database: customer_loan_database_test2
+
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>

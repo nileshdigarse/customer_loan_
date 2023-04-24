@@ -16,3 +16,7 @@
  body {
     background-image: url('/assets/17973908.jpg');
   }
+  .green {
+    background-color: green;
+    color: white;
+  }

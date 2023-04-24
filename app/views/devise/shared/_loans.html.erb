@@ -40,9 +40,7 @@
                 Principal Amount
               </th>
               
-              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                Status
-              </th>
+             
               <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                 Ending Date
               </th>
@@ -55,6 +53,7 @@
           <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
             <%count=1%>
             <% @loans.each do |loan| %>
+            <tr class="<%= loan.status == 'completed'? 'green': ''%>"
             <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
               <td><%= count %></td>
               <% count=count+1 %>
@@ -71,17 +70,9 @@
               <td>Rs. <%= loan.total_payment.round(2) %></td>
               <td>Rs. <%= loan.total_interest.round(2) %></td>
               <td>Rs. <%= loan.amount %></td>
-              <td>
-              <% if loan.status == "pending" %>
-              <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
-              <% else %>
-              <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-              <% end %>
-                <%=loan.status%>
-              </div>
-              </td>
               <td><%= loan.end_at %></td>
               <td><%= loan&.closed_at %></td>
+            </tr>
             </tr>
             <% end %>
           </tbody>

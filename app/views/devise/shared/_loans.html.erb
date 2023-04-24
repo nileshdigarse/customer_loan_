@@ -1,0 +1,83 @@
+<div class="flex flex-col" >
+  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+        <header class="px-5 py-4 border-b border-gray-100">
+          <h1 class="font-semibold text-gray-800">Loans </h1><small>No. of Loans :- <%= @loans.count %></small>
+          <% if @customer.present? %>
+            <td><%= link_to 'New Loan', new_customer_loan_path(customer_id: @customer.id), class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded', style: "margin-left: 62em;" %>
+              </td>
+          <% end %>
+        </header >
+        <table class="table-auto w-full" style="text-align:center" >
+          <thead class="bg-gray-50 dark:bg-gray-800" >
+            <tr>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                S.NO.
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Loan Type
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Total Emi's
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Pending Emi's
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Rate of Interest
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Duration (in years)
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Total Amount with Interest
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Total Interest on Loan
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Principal Amount
+              </th>
+              
+             
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Ending Date
+              </th>
+              <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                Closed at
+              </th>
+              
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+            <%count=1%>
+            <% @loans.each do |loan| %>
+            <tr class="<%= loan.status == 'completed'? 'green': ''%>"
+            <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
+              <td><%= count %></td>
+              <% count=count+1 %>
+              <% if @customer.present? %>
+                <td class="text-indigo-500"><%=link_to loan.loan_type.capitalize, customer_loan_emis_path(loan_id: loan.id, customer_id: @customer.id) %> loan</td>
+              <% else %>
+                <td><%= loan.loan_type.capitalize %> loan</td>
+              <% end %>
+              <% loan.id%>
+              <td><%= loan.number_emis %></td>
+              <td><%=loan.pending_emi%></td>
+              <td><%= loan.roi %>%</td>
+              <td><%= loan.duration_year %> years</td>
+              <td>Rs. <%= loan.total_payment.round(2) %></td>
+              <td>Rs. <%= loan.total_interest.round(2) %></td>
+              <td>Rs. <%= loan.amount %></td>
+              <td><%= loan.end_at %></td>
+              <td><%= loan&.closed_at %></td>
+            </tr>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

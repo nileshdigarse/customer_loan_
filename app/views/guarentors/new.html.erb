@@ -69,7 +69,7 @@
         <%= show_error_message(@guarentor, :contact) %>
       </div><br>
 
-      <%= form.fields_for :address, @guarentor.build_address do |address_form| %>
+      <%= form.fields_for :address do |address_form| %>
         <div>
           <%= address_form.label :street, class: "sr-only" %>
           <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Address"%>
@@ -95,7 +95,7 @@
         </div><br>
       <% end %>
 
-      <%= form.fields_for :document, @guarentor.build_document do |document_form| %>
+      <%= form.fields_for :document do |document_form| %>
         <div>
           <%= document_form.label :aadhar_card, class: "sr-only" %>
           <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor aadhar card"%>
@@ -108,10 +108,9 @@
           <%= show_error_message(@guarentor.document, :pancard) %>
         </div><br>
       <%end%>
-  
-      
+
         <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
-      
+
     <% end %>
     </div>
   </div>

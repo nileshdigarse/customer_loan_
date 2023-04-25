@@ -54,7 +54,6 @@
           <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
             <%count=1%>
             <% @loans.each do |loan| %>
-            <tr class="<%= loan.status == 'completed'? 'green': ''%>"
             <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
               <td><%= count %></td>
               <% count=count+1 %>
@@ -82,7 +81,6 @@
               </td>
               <td><%= loan.end_at %></td>
               <td><%= loan&.closed_at %></td>
-            </tr>
             </tr>
             <% end %>
           </tbody>

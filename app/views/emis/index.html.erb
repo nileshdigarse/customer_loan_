@@ -25,6 +25,9 @@
                   Interest Amount of EMI
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Total Amount of EMI
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Penalty on EMI
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
@@ -36,9 +39,7 @@
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Paid Date
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Total Amount of EMI
-                </th>
+                
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Pay EMI
                 </th>
@@ -52,6 +53,7 @@
                 <td><%= emi.month %></td>
                 <td>Rs. <%= emi.principal.round(2) %></td>
                 <td>Rs. <%= emi.interest_amount.round(2) %></td>
+                <td>Rs. <%= emi.amount.round(2) %></td>
                 <td>Rs. <%= emi&.penalty %></td>
                 <td>
                 <% if emi.status == "unpaid" %>
@@ -64,7 +66,7 @@
                 </td>
                 <td><%= emi.due_at %></td>
                 <td><%= emi&.paid_at %></td>
-                <td>Rs. <%= emi.amount.round(2) %></td>
+                
                 <%if emi.status == "unpaid"%>
                   <td>
                   <%= link_to "Pay EMI", edit_emi_path(emi), method: :put, class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>

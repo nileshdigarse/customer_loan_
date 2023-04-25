@@ -6,7 +6,6 @@ class Investor < ApplicationRecord
   accepts_nested_attributes_for :document, allow_destroy: true
   accepts_nested_attributes_for :address, allow_destroy: true
 
-  validates :name, :contact_no, :email, :profit_amount, :total_amount, :status, presence: true
-  validates :email, uniqueness: true
+  validates :name, :contact_no, presence: true
   validates :contact_no, length: { is: 10 }
 end

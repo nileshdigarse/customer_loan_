@@ -1,0 +1,98 @@
+<%= render "devise/shared/navbar" %>
+<br><br><br>
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:auto; margin-bottom:10%">
+  <div class="w-full max-w-md space-y-8">
+    
+      <!--<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">-->
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create New Investor</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+      </p>
+    
+    <%= form_with(model: @investor, local: true) do |form| %>
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div>
+          <%= form.label :Investor_name, class: "sr-only" %>
+          <%= form.text_field :name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor_name"%>
+          <%= show_error_message(@investor, :name) %>
+        </div><br>
+
+        <div>
+          <%= form.label :Investor_email, class: "sr-only" %>
+          <%= form.email_field :email, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor_email"%>
+          <%= show_error_message(@investor, :email) %>
+        </div><br>
+
+        <div>
+          <%= form.label :Investor_contact, class: "sr-only" %>
+          <%= form.telephone_field :contact_no, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor Contact Number"%>
+          <%= show_error_message(@investor, :contact_no) %>
+        </div><br>
+
+        <div>
+          <%= form.label :status, class: "sr-only" %>
+          <%= form.text_field :status, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Status"%>
+          <%= show_error_message(@investor, :status) %>
+        </div><br>
+      
+        <div>
+          <%= form.label :profit_amount, class: "sr-only" %>
+          <%= form.text_field :profit_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Profit Amount "%>
+          <%= show_error_message(@investor, :profit_amount) %>
+        </div><br>
+
+        <div>
+          <%= form.label :total_amount, class: "sr-only" %>
+          <%= form.text_field :total_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Total Amount"%>
+          <%= show_error_message(@investor, :total_amount) %>
+        </div><br>
+
+        <!--<h2>Addresses</h2>-->
+        <%= form.fields_for :address do |address_form| %>
+          <div>
+          <%= address_form.label :Investor_address, class: "sr-only" %>
+          <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor Address"%>
+          <%= show_error_message(@investor.address, :street) %>
+        </div><br>
+
+        <div>
+          <%= address_form.label :Investor_City, class: "sr-only" %>
+          <%= address_form.text_field :city , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "City"%>
+          <%= show_error_message(@investor.address, :city) %>
+        </div><br>
+
+        <div>
+          <%= address_form.label :Investor_state, class: "sr-only" %>
+          <%= address_form.text_field :state , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "State"%>
+          <%= show_error_message(@investor.address, :state) %>
+        </div><br>
+
+        <div>
+          <%= address_form.label :Investor_zipcode, class: "sr-only" %>
+          <%= address_form.text_field :zipcode , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor Pincode"%>
+          <%= show_error_message(@investor.address, :zipcode) %>
+        </div><br>
+        <% end %>
+
+        <!--document-->
+        <%= form.fields_for :document do |document_form| %>
+          <div>
+            <%= document_form.label :Investor_aadhar_card, class: "sr-only" %>
+            <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor Aadhar Card"%>
+            <%= show_error_message(@investor.document, :aadhar_card) %>
+          </div><br>
+
+          <div>
+            <%= document_form.label :Investor_pancard, class: "sr-only" %>
+            <%= document_form.text_field :pancard , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Investor Pancard"%>
+            <%= show_error_message(@investor.document, :pancard) %>
+          </div><br>
+        <%end%>
+
+        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "devise/shared/footer" %>

@@ -29,6 +29,8 @@ class CustomersController < ApplicationController
   def create    
     @customer = Customer.new(customer_params)
     @customer.name.downcase!
+    @customer.document.aadhar_card_image.attach(params[:customer][:aadhar_card_image])
+    @customer.document.pan_card_image.attach(params[:customer][:pan_card_image])
     if @customer.save
       redirect_to customers_path, flash: { success: 'Customer Created Successfully' }
     else
@@ -51,7 +53,6 @@ class CustomersController < ApplicationController
     params.require(:customer).permit(
       :name, :email, :contact,
       address_attributes: [:street, :city, :state, :zipcode, :addressable_type, :addressable_id],
-      document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id],
-      )
+      document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id, :aadhar_card_image, :pan_card_image])
   end
 end

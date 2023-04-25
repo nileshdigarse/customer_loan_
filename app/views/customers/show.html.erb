@@ -32,11 +32,17 @@
       <div>
         <p class="font-medium text-sm mb-1">Aadhra Card Details:</p>
         <p><%= @customer.document.aadhar_card %></p>
+        <% if @customer.document.aadhar_card_image.present? %>
+          <%= image_tag @customer.document.aadhar_card_image, class: 'h-24 w-44 object-cover'  %>
+        <% end %>
       </div>
 
       <div>
         <p class="font-medium text-sm mb-1">Pancard:</p>
         <p><%= @customer.document.pancard %></p>
+        <% if @customer.document.pan_card_image.present? %>
+          <%= image_tag @customer.document.pan_card_image, class: 'h-24 w-44 object-cover'  %>
+        <% end %>
       </div>
     </div>
   </div>

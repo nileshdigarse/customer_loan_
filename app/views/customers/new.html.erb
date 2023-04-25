@@ -23,6 +23,18 @@
         </div><br>
 
         <div>
+          <%= form.label :father_name, class: "sr-only" %>
+          <%= form.text_field :father_name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "father_name"%>
+          <%= show_error_message(@customer, :father_name) %>
+        </div><br>
+
+        <div>
+          <%= form.label :mother_name, class: "sr-only" %>
+          <%= form.text_field :mother_name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "mother_name"%>
+          <%= show_error_message(@customer, :mother_name) %>
+        </div><br>
+
+        <div>
           <%= form.label :Customer_contact, class: "sr-only" %>
           <%= form.telephone_field :contact, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Contact Number"%>
           <%= show_error_message(@customer, :contact) %>

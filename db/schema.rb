@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_123004) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_26_114255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_123004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "contact"
+    t.string "father_name"
+    t.string "mother_name"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -69,8 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_123004) do
     t.bigint "documentable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "aadhar_card_image"
-    t.string "pan_card_image"
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable"
   end
 

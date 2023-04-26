@@ -40,6 +40,11 @@
           <%= show_error_message(@customer, :contact) %>
         </div><br>
 
+        <div>
+          <%= form.label :profile_image %>
+          <%= form.file_field :profile_image, autofocus: true %>
+        </div><br>
+
         <!--<h2>Addresses</h2>-->
         <%= form.fields_for :address do |address_form| %>
           <div>

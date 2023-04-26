@@ -3,6 +3,11 @@
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:20rem; margin-bottom:5%;margin-top:5%">
   <div class="bg-white rounded-lg shadow-lg p-4" style="margin-left:0%">
     <h1 class="text-xl font-bold mb-4">Customer Details</h1>
+    <div style="margin-left:25%">
+      <% if @customer.profile_image.present? %>
+        <%= image_tag @customer.profile_image, class: 'h-44 w-44 object-cover rounded-full'  %>
+      <% end %>
+    </div>
     <div class="grid grid-cols-2 gap-6" >
       <div>
         <p class="font-medium text-sm mb-0">Email:</p>

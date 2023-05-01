@@ -51,56 +51,7 @@
       </div>
     </div>
   </div>
-  <div class="bg-white rounded-lg shadow-lg p-4" style="margin-left:18%">
-    <h1 class="text-xl font-bold mb-4">Guarentor Details</h1>
-    <div class="grid grid-cols-2 gap-6" >
-    <%guarentor=Guarentor.find_by(customer_id: @customer.id)%>
-    <%if guarentor.present? %>
-      <div>
-        <p class="font-medium text-sm mb-1">Email:</p>
-        <p><%= guarentor.email %></p>
-      </div>
 
-      <div>
-        <p class="font-medium text-sm mb-1">Contact:</p>
-        <p><%= guarentor.contact %></p>
-      </div>
-
-      <div>
-        <p class="font-medium text-sm mb-1">Name:</p>
-        <p><%= guarentor.name %></p>
-      </div>
-      
-      <div>
-        <p class="font-medium text-sm mb-1">Address:</p>
-        <p><%= guarentor.address.street %></p>
-      </div>
-
-      <div>
-        <p class="font-medium text-sm mb-1">City:</p>
-        <p><%= guarentor.address.city %></p>
-      </div>
-
-      <div>
-        <p class="font-medium text-sm mb-1">Pincode:</p>
-        <p><%= guarentor.address.zipcode %></p>
-      </div>
-
-      <div>
-        <p class="font-medium text-sm mb-1">Aadhra Card Details:</p>
-        <p><%= guarentor.document.aadhar_card %></p>
-      </div>
-
-      <div>
-        <p class="font-medium text-sm mb-1">Pancard:</p>
-        <p><%= guarentor.document.pancard %></p>
-        <%else%>
-        <h1>Please Click Below to add Guarentor<h1>
-        <%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: @customer.id), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-        <%end%>
-      </div>
-    </div>
-  </div>
 </div>
 
 <section class="container px-4 mx-auto" style="height:auto; margin-bottom:5%;margin-top:5%">

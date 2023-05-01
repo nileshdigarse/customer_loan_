@@ -6,16 +6,13 @@ class LoansController < ApplicationController
 
   def new
     @customer = Customer.find(params[:customer_id])
-    if Guarentor.find_by(customer_id:@customer&.id).present?
-    @loan = Loan.new
-    else
-      redirect_to customers_path, notice: 'First create Guarentor of the Customer'
-    end
+    @loan =  @customer.loans.new
   end
 
   def create
-    @customer = Customer.find(params["customer_id"])
-    @loan = Loan.new(loan_params)
+    @customer = Customer.find(params[:customer_id])
+    @loan = @customer.loans.new(loan_params)
+
     if @loan.save
       redirect_to @customer, notice: 'Loan was successfully created.'
     else
@@ -35,10 +32,24 @@ class LoansController < ApplicationController
     end
   end
 
+  def fetch_guarentor
+    @guarentors = if params[:query]
+      @guarentors = Guarentor.where("guarentors.name LIKE ?",["%#{params[:query]}%"])
+      @guarentors = @guarentors.paginate(page: params[:page], per_page: 5)
+    else
+      @guarentors = Guarentor.all
+      @guarentors = @guarentors.paginate(page: params[:page], per_page: 5)
+    end
+  end
+
   private
 
   def loan_params
-    params.require(:loan).permit(:amount, :number_emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at, :customer_id)
+    params.require(:loan).permit(:amount, :number_emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at, :customer_id,
+      guarentor_attributes: [:name, :email, :contact, :loan_id,
+        address_attributes: [:street, :city, :state, :zipcode, :addressable_type, :addressable_id],
+        document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id]
+      ]
+    )
   end
 end
-  

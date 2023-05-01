@@ -1,13 +1,16 @@
 class Loan < ApplicationRecord
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
 
-  has_many :emis, dependent: :destroy
   belongs_to :customer
+  has_one :guarentor, dependent: :destroy
+  has_many :emis, dependent: :destroy
 
   validates :status, inclusion: { in: %w[pending completed] }
   validates :amount, :duration_year, presence: true
 
-  before_create do
+  accepts_nested_attributes_for :guarentor, allow_destroy: true
+
+  before_create do 
     self.status = pending_emi == 0 ? "completed" : "pending"
     self.duration_month = duration_year * 12
     self.pending_emi = duration_month

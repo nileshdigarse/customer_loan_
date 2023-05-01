@@ -19,7 +19,6 @@
         <div>
           <%= form.label :Customer_email, class: "sr-only" %>
           <%= form.email_field :email, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer_email"%>
-          <%= show_error_message(@customer, :email) %>
         </div><br>
 
         <div>
@@ -50,25 +49,21 @@
           <div>
           <%= address_form.label :Customer_address, class: "sr-only" %>
           <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Address"%>
-          <%= show_error_message(@customer.address, :street) %>
         </div><br>
 
         <div>
           <%= address_form.label :Customer_City, class: "sr-only" %>
           <%= address_form.text_field :city , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "City"%>
-          <%= show_error_message(@customer.address, :city) %>
         </div><br>
 
         <div>
           <%= address_form.label :Customer_state, class: "sr-only" %>
           <%= address_form.text_field :state , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "State"%>
-          <%= show_error_message(@customer.address, :state) %>
         </div><br>
 
         <div>
           <%= address_form.label :Customer_zipcode, class: "sr-only" %>
           <%= address_form.text_field :zipcode , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Pincode"%>
-          <%= show_error_message(@customer.address, :zipcode) %>
         </div><br>
         <% end %>
 
@@ -77,13 +72,11 @@
           <div>
             <%= document_form.label :Customer_aadhar_card, class: "sr-only" %>
             <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Aadhar Card"%>
-            <%= show_error_message(@customer.document, :aadhar_card) %>
           </div><br>
 
           <div>
             <%= document_form.label :Customer_pancard, class: "sr-only" %>
             <%= document_form.text_field :pancard , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Pancard"%>
-            <%= show_error_message(@customer.document, :pancard) %>
           </div><br>
 
           <div>

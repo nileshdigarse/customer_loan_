@@ -38,12 +38,6 @@
         <p class="font-medium text-sm mb-1">Pancard:</p>
         <p><%= @customer.document.pancard %></p>
       </div>
-
-      <%guarentor=Guarentor.find_by(customer_id: @customer.id)%>
-      <div>
-        <p class="font-medium text-sm mb-1">Guarentor Name:</p>
-        <p><%= guarentor.name %></p>
-      </div>
     </div>
   </div>
   <div class="w-full max-w-md space-y-8">
@@ -54,48 +48,98 @@
       </p>
     </div>
     <%= form_with(model: [@customer, @loan]) do |form| %>
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div>
+          <%= form.label :amount, class: "sr-only" %>
+          <%= form.text_field :amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Amount"%>
+          <%= show_error_message(@loan, :amount) %>
+        </div><br>
 
-    <div class="-space-y-px rounded-md shadow-sm">
-      <div>
-      <%= form.label :amount, class: "sr-only" %>
-      <%= form.text_field :amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Amount"%>
-      <%= show_error_message(@loan, :amount) %>
-      </div><br>
+        <div>
+          <%= form.label :duration_year, class: "sr-only" %>
+          <%= form.number_field :duration_year, in: 1.0..30.0, step: 1 , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Duration in Years"%>
+          <%= show_error_message(@loan, :duration_year) %>
+        </div><br>
 
-      <div>
-      <%= form.label :duration_year, class: "sr-only" %>
-      <%= form.number_field :duration_year, in: 1.0..30.0, step: 1 , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Duration in Years"%>
-      <%= show_error_message(@loan, :duration_year) %>
-      </div><br>
+        <div>
+          <%= form.label :roi, class: "sr-only" %>
+          <%= form.text_field :roi , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Interest Rate"%>
+        </div><br>
 
-      <div>
-        <%= form.label :roi, class: "sr-only" %>
-        <%= form.text_field :roi , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Interest Rate"%>
-      </div><br>
+        <div>
+          <%= form.label :loan_type %>
+          <%= form.select :loan_type,[["personal"], ["business"], ["home"], ["student"]] , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Type of loan"%>
+        </div><br>
 
-      <div>
-        <%= form.label :loan_type %>
-        <%= form.select :loan_type,[["personal"], ["business"], ["home"], ["student"]] , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Type of loan"%>
-      </div><br>
+        <div>
+          <%= form.label :file_charge, class: "sr-only" %>
+          <%= form.text_field :file_charge , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "File Charges"%>
+        </div><br>
 
-      <div>
-      <%= form.label :file_charge, class: "sr-only" %>
-      <%= form.text_field :file_charge , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "File Charges"%>
-      </div><br>
+        <div>
+          <%= form.label :started_at, class: "sr-only" %>
+          <%= form.date_field :started_at , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Started_at"%>
+        </div><br>
 
-      <div>
-      <%= form.label :started_at, class: "sr-only" %>
-      <%= form.date_field :started_at , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Started_at"%>
-      </div><br>
+        <%= form.hidden_field :status, value:"pending" %>
+        <%= form.hidden_field :customer_id, value:@customer.id %>
 
-      <%= form.hidden_field :status, value:"pending" %>
-      <%= form.hidden_field :customer_id, value:@customer.id %>
-      
-      
+        <%= form.fields_for :guarentor_attributes do |guarentor_form| %>
+          <div>
+            <%= guarentor_form.label :name, class: "sr-only" %>
+            <%= guarentor_form.text_field :name , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Name"%>
+          </div><br>
+
+          <div>
+            <%= guarentor_form.label :email, class: "sr-only" %>
+            <%= guarentor_form.text_field :email , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Email"%>
+          </div><br>
+
+          <div>
+            <%= guarentor_form.label :contact, class: "sr-only" %>
+            <%= guarentor_form.text_field :contact , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor contact"%>
+
+          </div><br>
+
+          <%= guarentor_form.fields_for :address_attributes do |address_form| %>
+            <div>
+              <%= address_form.label :Customer_address, class: "sr-only" %>
+              <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Address"%>
+            </div><br>
+
+            <div>
+              <%= address_form.label :Customer_City, class: "sr-only" %>
+              <%= address_form.text_field :city , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "City"%>
+            </div><br>
+
+            <div>
+              <%= address_form.label :Customer_state, class: "sr-only" %>
+              <%= address_form.text_field :state , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "State"%>
+            </div><br>
+
+            <div>
+              <%= address_form.label :Customer_zipcode, class: "sr-only" %>
+              <%= address_form.text_field :zipcode , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Pincode"%>
+            </div><br>
+          <% end %>
+
+          <%= guarentor_form.fields_for :document_attributes do |document_form| %>
+            <div>
+              <%= document_form.label :aadhar_card, class: "sr-only" %>
+              <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor aadhar card"%>
+            </div><br>
+
+            <div>
+              <%= document_form.label :pancard, class: "sr-only" %>
+              <%= document_form.text_field :pancard , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Guarentor Pancard"%>
+            </div><br>
+          <%end%>
+        <% end %>
+
         <button type="submit" class="inline-flex ml-auto justify-center rounded-md border border-transparent bg-gray-800 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
-      
+      </div>  
     <% end %>
-    </div>
+    
   </div>
 </div>
 <%= render "devise/shared/footer" %>

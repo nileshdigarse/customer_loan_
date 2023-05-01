@@ -34,16 +34,10 @@
                   Contact No.
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Customer Name
-                </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Aadhar Card Number
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Pancard Number
-                </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Address Details
                 </th>
               </tr>
             </thead>
@@ -56,11 +50,8 @@
                 <td><%=guarentor.name.capitalize %></td>
                 <td><%= guarentor.email %></td>
                 <td><%= guarentor.contact %></td>
-                <% customer = Customer.find(guarentor.customer_id) %>
-                <td><%= customer.name %></td>
-                <td><%= guarentor.document.aadhar_card %></td>
-                <td><%= guarentor.document.pancard %></td>
-                <td><%= guarentor.address.street+ guarentor.address.state+ guarentor.address.city %></td>
+                <td><%= guarentor&.document&.aadhar_card %></td>
+                <td><%= guarentor&.document&.pancard %></td>
               </tr>
               <% end %>
             </tbody>

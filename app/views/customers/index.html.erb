@@ -43,9 +43,6 @@
                 <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Status
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Guarentor Name
-                </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -75,13 +72,6 @@
                   <% end %>
                   </td>
                   </div>
-                <%end%>
-                <% guarentor = Guarentor.find_by(customer_id: customer.id)%>
-                <% if guarentor == nil %>
-                  <td><%= link_to 'Add Guarentor', new_customer_guarentor_path(customer_id: customer.id), class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded' %>
-                  </td>
-                <%else%>
-                  <td><%= guarentor&.name %></td>
                 <%end%>
               </tr>
               <% end %>

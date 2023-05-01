@@ -7,19 +7,17 @@ Rails.application.routes.draw do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: "loans#index"
+  get '/fetch_guarentor' =>'loans#fetch_guarentor'
   resources :customers  do
     resources :loans do
       get '/emis' =>'emis#index'
       get :update_all_emis, on: :member
     end
-    resources :guarentors
   end
 
   resources :emis do
     get :pay_emi, on: :member
   end
-
-  resources :guarentors
 
   resources :investors do
     member do

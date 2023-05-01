@@ -1,5 +1,5 @@
 class Guarentor < ApplicationRecord
-  belongs_to :customer
+  belongs_to :loan
   has_one :address, as: :addressable, dependent: :destroy
   has_one :document, as: :documentable, dependent: :destroy
 

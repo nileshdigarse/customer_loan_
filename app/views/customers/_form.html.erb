@@ -1,0 +1,86 @@
+<%= form_with(model: customer, local: true) do |form| %>
+  <div class="-space-y-px rounded-md shadow-sm">
+    <div>
+      <%= form.label :Customer_name, class: "sr-only" %>
+      <%= form.text_field :name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer_name"%>
+      <%= show_error_message(customer, :name) %>
+    </div><br>
+
+    <div>
+      <%= form.label :Customer_email, class: "sr-only" %>
+      <%= form.email_field :email, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer_email"%>
+    </div><br>
+
+    <div>
+      <%= form.label :father_name, class: "sr-only" %>
+      <%= form.text_field :father_name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "father_name"%>
+      <%= show_error_message(customer, :father_name) %>
+    </div><br>
+
+    <div>
+      <%= form.label :mother_name, class: "sr-only" %>
+      <%= form.text_field :mother_name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "mother_name"%>
+      <%= show_error_message(customer, :mother_name) %>
+    </div><br>
+
+    <div>
+      <%= form.label :Customer_contact, class: "sr-only" %>
+      <%= form.telephone_field :contact, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Contact Number"%>
+      <%= show_error_message(customer, :contact) %>
+    </div><br>
+
+    <div>
+      <%= form.label :profile_image %>
+      <%= form.file_field :profile_image, autofocus: true %>
+    </div><br>
+
+    <!--<h2>Addresses</h2>-->
+    <%= form.fields_for :address do |address_form| %>
+      <div>
+      <%= address_form.label :Customer_address, class: "sr-only" %>
+      <%= address_form.text_field :street , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Address"%>
+    </div><br>
+
+    <div>
+      <%= address_form.label :Customer_City, class: "sr-only" %>
+      <%= address_form.text_field :city , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "City"%>
+    </div><br>
+
+    <div>
+      <%= address_form.label :Customer_state, class: "sr-only" %>
+      <%= address_form.text_field :state , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "State"%>
+    </div><br>
+
+    <div>
+      <%= address_form.label :Customer_zipcode, class: "sr-only" %>
+      <%= address_form.text_field :zipcode , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Pincode"%>
+    </div><br>
+    <% end %>
+
+    <!--document-->
+    <%= form.fields_for :document do |document_form| %>
+      <div>
+        <%= document_form.label :Customer_aadhar_card, class: "sr-only" %>
+        <%= document_form.text_field :aadhar_card , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Aadhar Card"%>
+      </div><br>
+
+      <div>
+        <%= document_form.label :Customer_pancard, class: "sr-only" %>
+        <%= document_form.text_field :pancard , autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Customer Pancard"%>
+      </div><br>
+
+      <div>
+        <%= form.label :aadhar_card_image %>
+        <%= form.file_field :aadhar_card_image %>
+      </div><br>
+
+      <div>
+        <%= form.label :pan_card_image %>
+        <%= form.file_field :pan_card_image %>
+      </div><br>
+    <%end%>
+
+    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
+
+  </div>
+<% end %>

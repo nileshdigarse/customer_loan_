@@ -33,13 +33,12 @@ class LoansController < ApplicationController
   end
 
   def fetch_guarentor
-    @guarentors = if params[:query]
+    if params[:query]
       @guarentors = Guarentor.where("guarentors.name LIKE ?",["%#{params[:query]}%"])
-      @guarentors = @guarentors.paginate(page: params[:page], per_page: 5)
     else
       @guarentors = Guarentor.all
-      @guarentors = @guarentors.paginate(page: params[:page], per_page: 5)
     end
+    @guarentors = @guarentors.paginate(page: params[:page], per_page: 5)
   end
 
   private

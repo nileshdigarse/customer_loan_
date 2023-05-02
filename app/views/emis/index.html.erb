@@ -6,7 +6,9 @@
       <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
         <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
           <header class="px-5 py-4 border-b border-gray-100">
-            <h1 class="font-semibold text-gray-800">EMI's </h1><small>No. of emis :- <%= @emis.count %></small>
+            <h1 class="font-semibold text-gray-800">Customer Name - <small><%= @loan.customer.name %></small></h1>
+            <h1 class="font-semibold text-gray-800">Phone No. - <small><%= @loan.customer.contact %></small></h1>
+            <h1 class="font-semibold text-gray-800">EMI's </h1<small>No. of emis - <%= @emis.count %></small>
             <%unless @loan.status == "completed"%>
               <%= link_to "Pay All Emi's", update_all_emis_customer_loan_path(id: @loan.id), method: :put, onclick: "return confirm('Are you sure you want to update all EMIs?');", class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded', style: "margin-left: 59em;" %>
             <%end%>

@@ -2,13 +2,12 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @customers = if params[:query]
+    if params[:query]
       @customers = Customer.where("customers.name LIKE ?",["%#{params[:query]}%"])
-      @customers = @customers.paginate(page: params[:page], per_page: 5)
     else
       @customers = Customer.all
-      @customers = @customers.paginate(page: params[:page], per_page: 5)
     end
+    @customers = @customers.paginate(page: params[:page], per_page: 5)
   end
 
   def show

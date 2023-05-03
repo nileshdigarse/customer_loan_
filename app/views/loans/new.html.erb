@@ -49,10 +49,10 @@
     </div>
     <%= form_with(model: [@customer, @loan]) do |form| %>
       <div class="-space-y-px rounded-md shadow-sm">
-      <div>
-        <%= form.label :agent_id %>
-        <%= form.collection_select(:agent_id, Agent.where(active: true), :id, :name, { prompt: true }) %>
-      </div>
+        <div>
+          <%= form.label :agent_id %>
+          <%= form.collection_select(:agent_id, Agent.where(active: true), :id, :name, { prompt: true }, { class: "w-96 px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm rounded-md" }) %>
+        </div><br>
         <div>
           <%= form.label :amount, class: "sr-only" %>
           <%= form.text_field :amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Amount"%>

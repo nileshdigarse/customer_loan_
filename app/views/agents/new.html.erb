@@ -1,0 +1,41 @@
+<%= render "devise/shared/navbar" %>
+<br><br><br>
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style="height:auto; margin-bottom:10%">
+  <div class="w-full max-w-md space-y-8">
+      <!--<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">-->
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Create New Agent</h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+      </p>
+    
+    <%= form_with(model: @agent, local: true) do |form| %>
+      <div class="-space-y-px rounded-md shadow-sm">
+        <div>
+          <%= form.label :Agent_name, class: "sr-only" %>
+          <%= form.text_field :name, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Agent_name"%>
+        </div><br>
+
+        <div>
+          <%= form.label :Agent_email, class: "sr-only" %>
+          <%= form.email_field :email, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Agent_email"%>
+        </div><br>
+
+        <div>
+          <%= form.label :Agent_contact, class: "sr-only" %>
+          <%= form.telephone_field :phone, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Agent Contact Number"%>
+        </div><br>
+
+        <div>
+          <%= form.label :Active, class: "inline-flex items-center" do %>
+            <%= form.check_box :active, class: "form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" %>
+            <span class="ml-2 text-sm text-gray-600">Active</span>
+          <% end %>
+        </div><br>
+
+        <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"><%= form.submit %> </button>
+
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "devise/shared/footer" %>

@@ -44,7 +44,7 @@ class LoansController < ApplicationController
   private
 
   def loan_params
-    params.require(:loan).permit(:amount, :number_emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at, :customer_id,
+    params.require(:loan).permit(:amount, :number_emis, :pending_emi, :roi, :status, :duration_year, :duration_month, :penalty, :started_at, :total_payment, :total_interest, :recieved_amount, :emi_amount, :file_charge, :loan_type, :end_at, :closed_at, :customer_id, :total_duration, :agent_id,
       guarentor_attributes: [:name, :email, :contact, :loan_id,
         address_attributes: [:street, :city, :state, :zipcode, :addressable_type, :addressable_id],
         document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id]

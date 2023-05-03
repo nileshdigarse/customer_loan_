@@ -2,6 +2,7 @@ class Loan < ApplicationRecord
   enum loan_type: { personal: 'personal', business: 'business', home: 'home', student: 'student' }
 
   belongs_to :customer
+  belongs_to :agent
   has_one :guarentor, dependent: :destroy
   has_many :emis, dependent: :destroy
 
@@ -12,20 +13,20 @@ class Loan < ApplicationRecord
 
   before_create do 
     self.status = pending_emi == 0 ? "completed" : "pending"
-    self.duration_month = duration_year * 12
-    self.pending_emi = duration_month
-    self.total_payment = amount.to_f * (1.0 + (roi / 100.0))**(duration_year.to_f)
+    self.total_duration = duration_year * 12 + duration_month
+    self.pending_emi = total_duration
+    self.total_payment = amount.to_f * (1.0 + (roi / 100.0))**(total_duration.to_f/12)
     self.total_interest = total_payment - amount.to_f
-    self.emi_amount = total_payment / duration_month.to_f
-    self.number_emis = duration_month
-    self.end_at = started_at + (365 * duration_year)
+    self.emi_amount = total_payment / total_duration.to_f
+    self.number_emis = total_duration
+    self.end_at = started_at + (365 * duration_year) + (30 * duration_month)
   end
 
   after_create do
-    (1..duration_month.to_i).each do |i|
+    (1..total_duration.to_i).each do |i|
       due = started_at.advance(months: i)
-      p_amount = amount.to_i / duration_month.to_i
-      i_amount = total_interest / duration_month.to_i
+      p_amount = amount.to_i / total_duration.to_i
+      i_amount = total_interest / total_duration.to_i
       Emi.create(loan_id: id, due_at: due, status: "unpaid", month: i, amount: p_amount + i_amount, principal: p_amount, interest_amount: i_amount, penalty: 0.0)
     end
   end

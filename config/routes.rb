@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
     resources :investor_transactions
   end
+
+  resources :agents, only: [:new, :create]
   # Defines the root path route ("/")
   # root "articles#index"
 end

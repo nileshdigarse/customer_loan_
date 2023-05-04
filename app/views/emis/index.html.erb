@@ -1,5 +1,5 @@
 <%= render "devise/shared/navbar" %>
- <%= render "devise/shared/notice" %>
+  <%= render "devise/shared/notice" %>
 <section class="container px-4 mx-auto" style="height:auto; margin-bottom:5%;margin-top:5%">
   <div class="flex flex-col" >
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -31,7 +31,16 @@
                   Total Amount of EMI
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
-                  Penalty on EMI
+                  Penalty
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Penalty Amount
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Paid Amount
+                </th>
+                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                  Due Amount
                 </th>
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Status
@@ -42,22 +51,22 @@
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Paid Date
                 </th>
-                
                 <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Pay EMI
                 </th>
-                
-                
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <% @emis.each do |emi| %>
-              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>  
+              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>
                 <td><%= emi.month %></td>
                 <td>Rs. <%= emi.principal.round(2) %></td>
                 <td>Rs. <%= emi.interest_amount.round(2) %></td>
                 <td>Rs. <%= emi.amount.round(2) %></td>
-                <td>Rs. <%= emi&.penalty %></td>
+                <td><%= emi.penalty %></td>
+                <td><%= emi.penalty_amount %></td>
+                <td><%= emi.paid_amount %></td>
+                <td><%= emi.due_amount %></td>
                 <td>
                 <% if emi.status == "unpaid" %>
                 <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
@@ -69,13 +78,12 @@
                 </td>
                 <td><%= emi.due_at %></td>
                 <td><%= emi&.paid_at %></td>
-                
                 <%if emi.status == "unpaid"%>
                   <td>
                   <%= link_to "Pay EMI", edit_emi_path(emi), method: :put, class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
                   </td>
                 <%else%>
-                <td><p>Already Paid</p></td>
+                  <td></td>
                 <%end%>
               </tr>
               <% end %>

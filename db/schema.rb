@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_133729) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_083512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,7 +88,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_133729) do
     t.float "principal"
     t.float "interest_amount"
     t.float "balance"
-    t.float "penalty"
     t.string "status"
     t.date "due_at"
     t.date "paid_at"
@@ -96,6 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_133729) do
     t.bigint "loan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "penalty_amount"
+    t.float "paid_amount"
+    t.float "due_amount"
+    t.boolean "penalty"
     t.index ["loan_id"], name: "index_emis_on_loan_id"
   end
 

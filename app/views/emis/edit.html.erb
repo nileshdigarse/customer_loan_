@@ -10,18 +10,28 @@
   <%= form_for @emi, url: emi_path(@emi), method: :patch do |form| %>
   <div class="-space-y-px rounded-md shadow-sm">
     <div>
-      <%= form.label :paid_at %>
-      <%= form.date_field :paid_at, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", value: Date.today.to_s, type: :date %>
+      <% if @emi.due_amount %>
+        <%= form.label :due_amount %>
+        <%= form.text_field :due_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",value: @emi.due_amount.round(2), placeholder: "Total Amount"%>
+      <% else %>
+        <%= form.label :amount %>
+        <%= form.text_field :amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",value: @emi.amount.round(2), placeholder: "Total Amount"%>
+      <% end %>
     </div><br>
 
     <div>
-      <%= form.label :status %>
-      <%= form.select :status, options_for_select(['paid'], @emi.status), {}, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
+      <%= form.label :paid_amount %>
+      <%= form.text_field :paid_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Paid Amount"%>
     </div><br>
 
     <div>
       <%= form.label :penalty %>
-      <%= form.text_field :penalty, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Penalty Amount"%>
+      <%= form.radio_button :penalty, 'true'%>True </br>
+
+      <%= form.label :penalty_amount %>
+      <%= form.text_field :penalty_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm", placeholder: "Penalty Amount"%>
+
+      <%= form.radio_button :penalty, 'false'%>False </br>
     </div><br>
 
     <button type="submit" class="inline-flex ml-auto justify-center rounded-md border border-transparent bg-gray-800 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">

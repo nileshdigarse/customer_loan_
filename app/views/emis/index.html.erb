@@ -58,34 +58,35 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
               <% @emis.each do |emi| %>
-              <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap" style='height: 60px;'>
-                <td><%= emi.month %></td>
-                <td>Rs. <%= emi.principal.round(2) %></td>
-                <td>Rs. <%= emi.interest_amount.round(2) %></td>
-                <td>Rs. <%= emi.amount.round(2) %></td>
-                <td><%= emi.penalty %></td>
-                <td><%= emi.penalty_amount %></td>
-                <td><%= emi.paid_amount %></td>
-                <td><%= emi.due_amount %></td>
-                <td>
-                <% if emi.status == "unpaid" %>
-                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
-                <% else %>
-                <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
-                <% end %>
-                  <%=emi.status%>
-                </div>
-                </td>
-                <td><%= emi.due_at %></td>
-                <td><%= emi&.paid_at %></td>
-                <%if emi.status == "unpaid"%>
+                <% row_class = emi.status == "paid" ? "bg-green-100 dark:bg-green-700" : "" %>
+                <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap <%= row_class %>" style='height: 60px;'>  
+                  <td><%= emi.month %></td>
+                  <td>Rs. <%= emi.principal.round(2) %></td>
+                  <td>Rs. <%= emi.interest_amount.round(2) %></td>
+                  <td>Rs. <%= emi.amount.round(2) %></td>
+                  <td><%= emi.penalty %></td>
+                  <td><%= emi.penalty_amount %></td>
+                  <td><%= emi.paid_amount %></td>
+                  <td><%= emi.due_amount %></td>
                   <td>
-                  <%= link_to "Pay EMI", edit_emi_path(emi), method: :put, class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+                  <% if emi.status == "unpaid" %>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
+                  <% else %>
+                  <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                  <% end %>
+                    <%=emi.status%>
+                  </div>
                   </td>
-                <%else%>
-                  <td></td>
-                <%end%>
-              </tr>
+                  <td><%= emi.due_at %></td>
+                  <td><%= emi&.paid_at %></td>
+                  <%if emi.status == "unpaid"%>
+                    <td>
+                    <%= link_to "Pay EMI", edit_emi_path(emi), method: :put, class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
+                    </td>
+                  <%else%>
+                    <td></td>
+                  <%end%>
+                </tr>
               <% end %>
             </tbody>
           </table>

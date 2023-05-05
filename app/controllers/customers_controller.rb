@@ -2,11 +2,7 @@ class CustomersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:query]
-      @customers = Customer.where("customers.name LIKE ?",["%#{params[:query]}%"])
-    else
-      @customers = Customer.all
-    end
+    @customers = Customer.where("customers.name LIKE ?",["%#{params[:query]}%"])
     @customers = @customers.paginate(page: params[:page], per_page: 5)
   end
 
@@ -43,8 +39,11 @@ class CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params["id"])
-    @customer.update(customer_params)
-    redirect_to customers_path, flash: { success: 'Update Customer Profile Successfully' }
+    if @customer.update(customer_params)
+      redirect_to customers_path, flash: { success: 'Update Customer Profile Successfully' }
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
   
   private    

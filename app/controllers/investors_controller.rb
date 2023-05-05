@@ -1,11 +1,7 @@
 class InvestorsController < ApplicationController
 
   def index
-    if params[:query]
-      @investors = Investor.where("investors.name LIKE ?",["%#{params[:query]}%"])
-    else
-      @investors = Investor.all
-    end
+    @investors = Investor.where("investors.name LIKE ?",["%#{params[:query]}%"])
     @investors = @investors.paginate(page: params[:page], per_page: 5)
   end
 

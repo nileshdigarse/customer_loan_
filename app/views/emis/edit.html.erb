@@ -10,7 +10,7 @@
   <%= form_for @emi, url: emi_path(@emi), method: :patch do |form| %>
   <div class="-space-y-px rounded-md shadow-sm">
     <div>
-      <% if @emi.due_amount %>
+      <% if @emi.due_amount && @emi.due_amount > 0.0 %>
         <%= form.label :due_amount %>
         <%= form.text_field :due_amount, autofocus: true, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm",value: @emi.due_amount.round(2), placeholder: "Total Amount"%>
       <% else %>

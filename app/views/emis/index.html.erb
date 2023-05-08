@@ -11,47 +11,47 @@
             <h1 class="font-semibold text-gray-800">Agent Name - <small><%= @loan.agent&.name&.capitalize %></small></h1>
             <h1 class="font-semibold text-gray-800">EMI's </h1<small>No. of emis - <%= @emis.count %></small>
             <%unless @loan.status == "completed"%>
-              <%= link_to "Pay All Emi's", update_all_emis_customer_loan_path(id: @loan.id), method: :put, onclick: "return confirm('Are you sure you want to update all EMIs?');", class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded', style: "margin-left: 59em;" %>
+              <%= link_to "Pay All Emi's", update_all_emis_customer_loan_path(id: @loan.id), method: :put, onclick: "return confirm('Are you sure you want to update all EMIs?');", class: 'bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded', style: "margin-left: 90%;" %>
             <%end%>
 
           </header >
           <table class="table-auto w-full" style="text-align:center" >
             <thead class="bg-gray-50 dark:bg-gray-800" >
               <tr>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   S.NO.
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Principal Amount of EMI
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Interest Amount of EMI
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Total Amount of EMI
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Penalty
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Penalty Amount
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Paid Amount
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Due Amount
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Status
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Due Date of EMI
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Paid Date
                 </th>
-                <th scope="col" class="px-4 py-3.5 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
+                <th scope="col" class="px-4 py-3.5 w-0 text-md font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400">
                   Pay EMI
                 </th>
               </tr>
@@ -60,15 +60,15 @@
               <% @emis.each do |emi| %>
                 <% row_class = emi.status == "paid" ? "bg-green-100 dark:bg-green-700" : "" %>
                 <tr class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap <%= row_class %>" style='height: 60px;'>  
-                  <td><%= emi.month %></td>
-                  <td>Rs. <%= emi.principal.round(2) %></td>
-                  <td>Rs. <%= emi.interest_amount.round(2) %></td>
-                  <td>Rs. <%= emi.amount.round(2) %></td>
-                  <td><%= emi.penalty %></td>
-                  <td><%= emi.penalty_amount %></td>
-                  <td><%= emi.paid_amount %></td>
-                  <td><%= emi.due_amount %></td>
-                  <td>
+                  <td class = "w-0"><%= emi.month %></td>
+                  <td class = "w-0">Rs. <%= emi.principal.round(2) %></td>
+                  <td class = "w-0">Rs. <%= emi.interest_amount.round(2) %></td>
+                  <td class = "w-0">Rs. <%= emi.amount.round(2) %></td>
+                  <td class = "w-0"><%= emi.penalty %></td>
+                  <td class = "w-0"><%= emi.penalty_amount&.round(2) %></td>
+                  <td class = "w-0"><%= emi.paid_amount&.round(2) %></td>
+                  <td class = "w-0"><%= emi.due_amount&.round(2) %></td>
+                  <td class = "w-0">
                   <% if emi.status == "unpaid" %>
                   <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-100/60 dark:bg-gray-800">
                   <% else %>
@@ -77,14 +77,14 @@
                     <%=emi.status%>
                   </div>
                   </td>
-                  <td><%= emi.due_at %></td>
-                  <td><%= emi&.paid_at %></td>
+                  <td class = "w-0"><%= emi.due_at %></td>
+                  <td class = "w-0"><%= emi&.paid_at %></td>
                   <%if emi.status == "unpaid"%>
-                    <td>
+                    <td class = "w-0">
                     <%= link_to "Pay EMI", edit_emi_path(emi), method: :put, class: 'bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded' %>
                     </td>
                   <%else%>
-                    <td></td>
+                    <td class = "w-0"></td>
                   <%end%>
                 </tr>
               <% end %>

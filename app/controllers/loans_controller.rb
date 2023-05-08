@@ -1,7 +1,6 @@
 class LoansController < ApplicationController
 
   def index 
-    @loans = Loan.where(status: 'pending')
   end
 
   def new

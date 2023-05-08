@@ -1,7 +1,7 @@
 class EmisController < ApplicationController
   def index
     @loan = Loan.find(params[:loan_id])
-    @emis = Emi.where(loan_id: @loan.id).order("month ASC")
+    @emis = Emi.where(loan_id: @loan.id).order(:created_at)
   end
 
   def edit

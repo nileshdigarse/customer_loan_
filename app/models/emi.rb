@@ -1,6 +1,22 @@
 class Emi < ApplicationRecord
   belongs_to :loan
 
+  def self.today_count
+    where(created_at: Date.today).count
+  end
+  
+  def self.today_amount
+    where(created_at: Date.today).sum(:amount)&.round(2)
+  end
+  
+  def self.pending_count
+    where('created_at <= ?', Date.today).count
+  end
+  
+  def self.pending_amount
+    where('created_at <= ?', Date.today).sum(:amount)&.round(2)
+  end
+
   def update_emi(emi)
     paid_amount = self.paid_amount + emi["paid_amount"].to_f
     due_amount = self.amount.round(2) - paid_amount.round(2)

@@ -11,4 +11,8 @@ class Customer < ApplicationRecord
 
   validates :name, :contact, :father_name, :mother_name, presence: true
   validates :contact, length: { is: 10 }
+
+  def self.active_today_count
+    joins(:loans).where(loans: { created_at: Date.today.beginning_of_day..Date.today.end_of_day }).count
+  end
 end

@@ -30,4 +30,20 @@ class Loan < ApplicationRecord
       Emi.create(loan_id: id, due_at: due, status: "unpaid", month: i, amount: p_amount + i_amount, principal: p_amount, interest_amount: i_amount, penalty: 0.0)
     end
   end
+
+  def self.total_amount
+    sum(:amount)
+  end
+  
+  def self.total_interest
+    sum(:total_interest).round(2)
+  end
+  
+  def self.file_charge
+    sum(:file_charge)
+  end
+  
+  def self.penalty
+    sum(:penalty)
+  end
 end

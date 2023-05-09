@@ -14,7 +14,6 @@ class Emi < ApplicationRecord
   end
 
   def emi_penalty(emi)
-    byebug
     if emi["penalty"] == "true"
       penalty_amount = self.penalty_amount + emi["penalty_amount"].to_f
       self.update(penalty: emi["penalty"], penalty_amount: penalty_amount)

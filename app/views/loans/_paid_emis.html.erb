@@ -1,0 +1,34 @@
+<% if @emis.present? %>
+  <div class="box info-box w-full mx-3" >
+    <div class="box-header with-border font-bold bg-[#ffcccc] h-12 p-4">
+      <h4 class="box-title text-warning">Recently Paid Emis</h3>
+    </div>
+
+    <div class="box-body h-10">
+
+      <table class="table-fixed w-full" style="text-align:center" >
+        <thead class="bg-gray-50 dark:bg-gray-800">
+          <tr class = "border-b">
+            <th class = "w-0 px-4 py-2">S.NO.</th>
+            <th class = "w-0 px-4 py-2">Loan ID</th>
+            <th class = "w-0 px-4 py-2">Customer Name</th>
+            <th class = "w-0 px-4 py-2">Paid At</th>
+            <th class = "w-0 px-4 py-2">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray">
+          <%count=0%>
+          <% @emis.each do |emi| %>
+            <tr class = "border-b"><tr>
+              <td class = "w-0 px-4 py-1"><%= count = count+1 %> </td>
+              <td class = "w-0 px-4 py-1"><%= emi.loan_id %></td>
+              <td class = "w-0 px-4 py-1"><%= emi.loan.customer.name %></td>
+              <td class = "w-0 px-4 py-1"><%= emi.paid_at %></td>
+              <td class = "w-0 px-4 py-1"><%= emi.amount %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

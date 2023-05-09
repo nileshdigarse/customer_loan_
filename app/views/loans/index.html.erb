@@ -1,8 +1,14 @@
 <%= render "devise/shared/navbar" %>
 <%= render "devise/shared/notice" %>
 <section class="container px-4 mx-auto" style="height:auto; margin-bottom:8%;margin-top:5%">
-  <div class="dashboard">
-    <%= render "dashboard_menu" %>
+  <%= render "dashboard_menu" %>
+  <div class="dashboard flex">
     <%= render "pending_status" %>
+    <%= render "recent_members"%>
+  </div>
+  <div class="dashboard flex mt-7">
+    <%= render "paid_emis"%>
   </div>
 </section>
+
+<%= render "devise/shared/footer" %>

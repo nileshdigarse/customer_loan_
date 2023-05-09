@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
 
-  def index 
+  def index
+    @customers = Customer.last(5)
     @investor = Investor.total_amount
     @loan = Loan.total_amount
     @total_interest = Loan.total_interest

@@ -1,0 +1,29 @@
+<div class="box info-box flex-auto w-2/4" >
+  <div class="box-header with-border font-bold bg-[#ccccff] h-12 p-4">
+    <h4 class="box-title text-warning">Recent Customers</h3>
+  </div>
+
+  <div class="box-body h-10">
+    <table class="table-fixed w-full" style="text-align:center" >
+      <thead class="bg-gray-50 dark:bg-gray-800">
+        <tr class = "border-b">
+          <th class = "w-0 px-4 py-2">S.NO.</th>
+          <th class = "w-0 px-4 py-2">Name</th>
+          <th class = "w-0 px-4 py-2">Mobile</th>
+          <th class = "w-0 px-4 py-2">Address</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray">
+        <%count=0%>
+        <% @customers.each do |customer| %>
+          <tr class = "border-b"><tr>
+            <td class = "w-0 px-4 py-1"><%= count = count+1 %> </td>
+            <td class = "w-0 px-4 py-1"><%= customer.name %></td>
+            <td class = "w-0 px-4 py-1"><%= customer.contact %></td>
+            <td class = "w-0 px-4 py-1"><%= customer.address.city %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

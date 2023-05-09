@@ -7,7 +7,7 @@
         </div>
         <div class="ml-7">
           <p class="text-base leading-5 font-medium text-gray-300">Total Balance</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= Investor.sum(:total_amount) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= @investor %></p>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="ml-7">
           <p class="text-base leading-5 font-medium text-gray-300">Remaining Investor Balance</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= (Investor.sum(:total_amount) - Loan.sum(:amount)) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= (@investor - @loan) %></p>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="ml-7">
           <p class="text-base leading-5 font-medium text-gray-300">Total Collection Amount</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= Loan.sum(:amount) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= @loan %></p>
         </div>
       </div>
     </div>
@@ -49,13 +49,13 @@
         </div>
         <div class="ml-7">
           <p class="text-base leading-5 font-medium text-gray-300">Total Interest</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= Loan.sum(:total_interest).round(2) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= @total_interest %></p>
         </div>
       </div>
     </div>
   </div>
-  </div><br>
-  <div class="flex flex-row">
+</div><br>
+<div class="flex flex-row">
   <div class="w-1/4 px-2">
     <div class="rounded-md border border-gray-400 shadow-lg bg-gray-500">
       <div class="p-3 flex items-center">
@@ -66,7 +66,7 @@
         </div>
         <div class="ml-7">
           <p class="text-base leading-5 font-medium text-gray-300">Total File Charge</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= Loan.sum(:file_charge) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= @file_charge %></p>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="ml-3">
           <p class="text-base leading-5 font-medium text-gray-300">Total Penalty</p>
-          <p class="text-lg leading-6 font-medium text-gray-100"><%= Loan.sum(:penalty) %></p>
+          <p class="text-lg leading-6 font-medium text-gray-100"><%= @penalty %></p>
         </div>
       </div>
     </div>

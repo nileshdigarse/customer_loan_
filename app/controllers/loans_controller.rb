@@ -1,6 +1,16 @@
 class LoansController < ApplicationController
 
   def index 
+    @investor = Investor.total_amount
+    @loan = Loan.total_amount
+    @total_interest = Loan.total_interest
+    @file_charge = Loan.file_charge
+    @penalty = Loan.penalty
+    @emi = Emi.today_count
+    @emi_amount = Emi.today_amount
+    @pending_emi = Emi.pending_count
+    @pending_emi_amount = Emi.pending_amount
+    @active_customer = Customer.active_today_count
   end
 
   def new

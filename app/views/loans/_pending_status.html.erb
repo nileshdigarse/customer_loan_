@@ -1,30 +1,30 @@
-<div data-v-f3ac1188="" class="box info-box w-fit">
-  <div data-v-f3ac1188="" class="box-header with-border bg-green-700 h-12">
-    <h4 data-v-f3ac1188="" class="box-title text-warning">Pending Records</h3>
+<div class="box info-box w-fit">
+  <div class="box-header with-border bg-green-700 h-12">
+    <h4 class="box-title text-warning">Pending Records</h3>
   </div>
 
-  <div data-v-f3ac1188="" class="box-body">
-    <table data-v-f3ac1188="" class="table table-sm table-bordered table-striped table-hover">
-      <thead data-v-f3ac1188="" class="bg-gray-100">
-        <tr data-v-f3ac1188="" class="border-b">
-          <td data-v-f3ac1188="" class="px-4 py-2">Pending Number Of EMI today</td> 
-          <td data-v-f3ac1188="" class="px-4 py-2"><%= Emi.where(created_at: Date.today).count %></td>
+  <div class="box-body">
+    <table class="table table-sm table-bordered table-striped table-hover">
+      <thead class="bg-gray-100">
+        <tr class="border-b">
+          <td class="px-4 py-2">Pending Number Of EMI today</td> 
+          <td class="px-4 py-2"><%= @emi %></td>
         </tr> 
-        <tr data-v-f3ac1188="" class="border-b">
-          <td data-v-f3ac1188="" class="px-4 py-2">Pending Amount Of EMI today</td> 
-          <td data-v-f3ac1188="" class="px-4 py-2"><%= Emi.where(created_at: Date.today).sum(:amount)&.round(2) %></td>
+        <tr class="border-b">
+          <td class="px-4 py-2">Pending Amount Of EMI today</td> 
+          <td class="px-4 py-2"><%= @emi_amount %></td>
         </tr> 
-        <tr data-v-f3ac1188="" class="border-b">
-          <td data-v-f3ac1188="" class="px-4 py-2">Pending Number Of EMI Till today</td> 
-          <td data-v-f3ac1188="" class="px-4 py-2"><%= Emi.where('created_at <= ?', Date.today).count %></td>
+        <tr class="border-b">
+          <td class="px-4 py-2">Pending Number Of EMI Till today</td> 
+          <td class="px-4 py-2"><%= @pending_emi %></td>
         </tr> 
-        <tr data-v-f3ac1188="" class="border-b">
-          <td data-v-f3ac1188="" class="px-4 py-2">Pending Amount Of EMI Till today</td> 
-          <td data-v-f3ac1188="" class="px-4 py-2"><%= Emi.where('created_at <= ?', Date.today).sum(:amount)&.round(2) %></td>
+        <tr class="border-b">
+          <td class="px-4 py-2">Pending Amount Of EMI Till today</td> 
+          <td class="px-4 py-2"><%= @pending_emi_amount %></td>
         </tr> 
-        <tr data-v-f3ac1188="" class="border-b">
-          <td data-v-f3ac1188="" class="px-4 py-2">Total Active Customer</td> 
-          <td data-v-f3ac1188="" class="px-4 py-2"><%= Customer.joins(:loans).where(loans: { created_at: Date.today.beginning_of_day..Date.today.end_of_day }).count %></td>
+        <tr class="border-b">
+          <td class="px-4 py-2">Total Active Customer</td> 
+          <td class="px-4 py-2"><%= @active_customer %></td>
         </tr>
       </thead>
     </table>

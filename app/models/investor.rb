@@ -8,4 +8,8 @@ class Investor < ApplicationRecord
 
   validates :name, :contact_no, presence: true
   validates :contact_no, length: { is: 10 }
+
+  def self.total_amount
+    sum(:total_amount)
+  end
 end

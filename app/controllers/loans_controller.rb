@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
 
   def index
+    @emis = Emi.where(status: "paid").last(5)
     @customers = Customer.last(5)
     @investor = Investor.total_amount
     @loan = Loan.total_amount

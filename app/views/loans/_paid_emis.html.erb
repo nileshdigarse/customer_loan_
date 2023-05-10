@@ -10,8 +10,8 @@
         <thead class="bg-gray-50 dark:bg-gray-800">
           <tr class = "border-b">
             <th class = "w-0 px-4 py-2">S.NO.</th>
-            <th class = "w-0 px-4 py-2">Loan ID</th>
             <th class = "w-0 px-4 py-2">Customer Name</th>
+            <th class = "w-0 px-4 py-2">Loan ID</th>
             <th class = "w-0 px-4 py-2">Paid At</th>
             <th class = "w-0 px-4 py-2">Amount</th>
           </tr>
@@ -21,10 +21,10 @@
           <% @emis.each do |emi| %>
             <tr class = "border-b"><tr>
               <td class = "w-0 px-4 py-1"><%= count = count+1 %> </td>
-              <td class = "w-0 px-4 py-1"><%= emi.loan_id %></td>
               <td class = "w-0 px-4 py-1"><%= emi.loan.customer.name %></td>
+              <td class = "w-0 px-4 py-1"><%= emi.loan_id %></td>
               <td class = "w-0 px-4 py-1"><%= emi.paid_at %></td>
-              <td class = "w-0 px-4 py-1"><%= emi.amount %></td>
+              <td class = "w-0 px-4 py-1"><%= emi.amount.round(2) %></td>
             </tr>
           <% end %>
         </tbody>

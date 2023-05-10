@@ -1,26 +1,30 @@
-<div class="box info-box flex-auto w-2/4" >
+<div class="box info-box w-full" >
   <div class="box-header with-border font-bold bg-[#ccccff] h-12 p-4">
-    <h4 class="box-title text-warning">Recent Customers</h3>
+    <h4 class="box-title text-warning">Recent Loan</h3>
   </div>
 
   <div class="box-body h-10">
     <table class="table-fixed w-full" style="text-align:center" >
       <thead class="bg-gray-50 dark:bg-gray-800">
         <tr class = "border-b">
-          <th class = "w-0 px-4 py-2">S.NO.</th>
-          <th class = "w-0 px-4 py-2">Name</th>
-          <th class = "w-0 px-4 py-2">Mobile</th>
-          <th class = "w-0 px-4 py-2">Address</th>
+          <th class = "px-1 py-1">S.NO.</th>
+          <th class = "px-1 py-1">Name</th>
+          <th class = "px-1 py-1">Mobile</th>
+          <th class = "px-1 py-1">Amount</th>
+          <th class = "px-1 py-1">Duration (In Year)</th>
+          <th class = "px-1 py-1">Rate of Interest</th>
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray">
         <%count=0%>
-        <% @customers.each do |customer| %>
+        <% @loans.each do |loan| %>
           <tr class = "border-b"><tr>
-            <td class = "w-0 px-4 py-1"><%= count = count+1 %> </td>
-            <td class = "w-0 px-4 py-1"><%= customer.name %></td>
-            <td class = "w-0 px-4 py-1"><%= customer.contact %></td>
-            <td class = "w-0 px-4 py-1"><%= customer.address.city %></td>
+            <td class = "px-1 py-1"><%= count = count+1 %> </td>
+            <td class = "px-1 py-1"><%= loan.customer.name %></td>
+            <td class = "px-1 py-1"><%= loan.customer.contact %></td>
+            <td class = "px-1 py-1"><%= loan.amount.round(2) %></td>
+            <td class = "px-1 py-1"><%= loan.duration_year %></td>
+            <td class = "px-1 py-1"><%= loan.roi %></td>
           </tr>
         <% end %>
       </tbody>

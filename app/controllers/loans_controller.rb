@@ -1,16 +1,19 @@
 class LoansController < ApplicationController
 
   def index
-    @emis = Emi.where(status: "paid").last(5)
-    @loans = Loan.last(5)
-    @investor = Investor.total_amount
-    @loan = Loan.total_amount
-    @total_interest = Loan.total_interest
-    @file_charge = Loan.file_charge
-    @penalty = Loan.penalty
+    date_range = range(params[:filter])
+  
+    @investor = Investor.total_amount(date_range)
+    @loan = Loan.total_amount(date_range)
+    @total_interest = Loan.total_interest(date_range)
+    @file_charge = Loan.file_charge(date_range)
+    @penalty = Loan.penalty(date_range)
+
     @emi = Emi.today_count
     @emi_amount = Emi.today_amount
     @pending_emi = Emi.pending_count
+    @loans = Loan.includes(:customer).last(5)
+    @emis = Emi.includes(:loan).where(status: "paid").last(5)
     @pending_emi_amount = Emi.pending_amount
     @active_customer = Customer.active_today_count
   end
@@ -57,5 +60,18 @@ class LoansController < ApplicationController
         document_attributes: [:aadhar_card, :pancard, :documentable_type, :documentable_id]
       ]
     )
+  end
+
+  def range(filter)
+    case filter
+    when 'today'
+      date_range = Date.today.all_day
+    when 'month'
+      date_range = Date.today.beginning_of_month..Date.today.end_of_month
+    when 'year'
+      date_range = Date.today.beginning_of_year..Date.today.end_of_year
+    else
+      date_range = nil
+    end
   end
 end

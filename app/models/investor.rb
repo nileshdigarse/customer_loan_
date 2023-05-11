@@ -9,7 +9,10 @@ class Investor < ApplicationRecord
   validates :name, :contact_no, presence: true
   validates :contact_no, length: { is: 10 }
 
-  def self.total_amount
-    sum(:total_amount)
+  scope :within_date_range, ->(date_range) { date_range.present? ? where(created_at: date_range) : all }
+  scope :sum_of, ->(attr) { sum(attr) }
+
+  def self.total_amount(date_range = nil)
+    within_date_range(date_range).sum_of(:total_amount)
   end
 end

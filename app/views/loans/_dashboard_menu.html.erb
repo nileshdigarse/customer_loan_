@@ -1,3 +1,8 @@
+<div class="filters">
+  <%= form_with(url: root_path, method: :get) do %>
+    <%= select_tag :filter, options_for_select({'All Records' => '', 'Today' => 'today', 'Month' => 'month', 'Year' => 'year' }, params[:filter]), { include_blank: false, class: 'form-control', onchange: 'this.form.submit();' } %>
+  <% end %>
+</div>
 <div class="flex flex-row">
   <div class="w-1/4 px-2">
     <div class="rounded-md border border-gray-400 shadow-lg bg-green-700">

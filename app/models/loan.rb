@@ -11,6 +11,9 @@ class Loan < ApplicationRecord
 
   accepts_nested_attributes_for :guarentor, allow_destroy: true
 
+  scope :within_date_range, ->(date_range) { date_range.present? ? where(created_at: date_range) : all }
+  scope :sum_of, ->(attr) { sum(attr) }
+
   before_create do 
     self.status = pending_emi == 0 ? "completed" : "pending"
     self.total_duration = duration_year * 12 + duration_month
@@ -31,19 +34,19 @@ class Loan < ApplicationRecord
     end
   end
 
-  def self.total_amount
-    sum(:amount)
+  def self.total_amount(date_range = nil)
+    within_date_range(date_range).sum_of(:amount)
   end
-  
-  def self.total_interest
-    sum(:total_interest).round(2)
+
+  def self.total_interest(date_range = nil)
+    within_date_range(date_range).sum_of(:total_interest).round(2)
   end
-  
-  def self.file_charge
-    sum(:file_charge)
+
+  def self.file_charge(date_range = nil)
+    within_date_range(date_range).sum_of(:file_charge)
   end
-  
-  def self.penalty
-    sum(:penalty)
+
+  def self.penalty(date_range = nil)
+    within_date_range(date_range).sum_of(:penalty)
   end
 end

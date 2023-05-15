@@ -1,7 +1,10 @@
-<div data-controller="filter">
-  <%= form_with(method: :get, data: { target: "filter.form" }) do %>
-    <%= select_tag :filter, options_for_select({ "All Records" => "", "Today" => "today", "Weekly" => "weekly", "Monthly" => "monthly" }, params[:filter]), include_blank: false, class: "form-select", data: { action: "filter#onChange", target: "filter.select"} %>
-  <% end %>
+<div class="my-10 p-3">
+  <div class="absolute right-0" data-controller="filter" style="
+  margin-right: 11rem;">
+    <%= form_with(method: :get, data: { target: "filter.form" }) do %>
+      <%= select_tag :filter, options_for_select({ "All Records" => "", "Today" => "today", "Weekly" => "weekly", "Monthly" => "monthly" }, params[:filter]), include_blank: false, class: "form-select w-40 h-10 font-bold bg-[#e6e6e6]", data: { action: "filter#onChange", target: "filter.select"} %>
+    <% end %>
+  </div>
 </div>
 <div class="flex flex-row">
   <div class="w-1/4 px-2">
